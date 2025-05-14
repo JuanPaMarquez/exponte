@@ -5,7 +5,7 @@ export default function LinksNav() {
     <>
       <ButtonNav>Inicio</ButtonNav>        
       <ButtonNav href="/precios">Precios</ButtonNav>
-      <ButtonMain>Entrar</ButtonMain>
+      <ButtonMain href="/login">Entrar</ButtonMain>
     </>
   )
 }

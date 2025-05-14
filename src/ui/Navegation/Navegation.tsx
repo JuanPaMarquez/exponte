@@ -12,7 +12,7 @@ export default function Navegation() {
   }
 
   return (
-    <nav className="flex justify-between px-5 p-2 fixed top-0 left-0 w-full bg-[var(--color-background)]">
+    <nav className="flex justify-between px-5 p-2 h-17 sticky top-0 left-0 w-full bg-[var(--color-background)] z-10">
       <div id="logo">
         <button className="titulo hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer">
           EXPONTE
