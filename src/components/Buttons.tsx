@@ -13,7 +13,7 @@ export function ButtonMain ({
   children, 
   size="text-md", 
   black=true,
-  href="/"
+  href=""
 }:{
   children: React.ReactNode, 
   size?: string,
