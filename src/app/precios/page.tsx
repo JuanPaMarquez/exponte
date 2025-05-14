@@ -3,7 +3,7 @@ import { precios } from "@/mocks/precios"
 
 export default function Precios() {
   return (
-    <div className="bg-[var(--color-foreground)] text-[var(--color-background)] flex justify-center py-30 min-[1000px]:items-center min-[1000px]:h-screen">
+    <div className="bg-[var(--color-foreground)] text-[var(--color-background)] flex justify-center py-10 md:py-30 min-[1000px]:items-center min-[1000px]:h-screen">
       <div id="precios" className="flex flex-col min-[1000px]:justify-center min-[1000px]:flex-row gap-6">
         {
           precios.map((precio) => (
