@@ -25,15 +25,32 @@ export function ButtonMain ({
     : "text-[var(--color-background)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-background)]";
 
   return (
-    <Link href={href} prefetch={true} className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}>
+    <Link href={href} className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}>
       {children}
     </Link>
   );
 }
 
-export function ButtonMainBlack ({children, size="text-md" }: {children: React.ReactNode, size?: string}) {
+export function ButtonMainBlack ({
+  children, 
+  onClick,
+  size="text-md",
+  black=true,
+}: {
+  children: React.ReactNode, 
+  onClick?: () => void,
+  size?: string
+  black?: boolean,
+}) {
+  const color = black 
+    ? "text-[var(--color-foreground)] hover:text-[var(--color-background)] hover:bg-[var(--color-foreground)]" 
+    : "text-[var(--color-background)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-background)]";
+
   return (
-    <button className={`py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold hover:text-[var(--color-foreground)] hover:bg-[var(--color-background)]`}>
+    <button
+      onClick={onClick} 
+      className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}
+    >
       {children}
     </button>
   );
