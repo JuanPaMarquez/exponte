@@ -1,7 +1,7 @@
 "use client"
 import { ButtonMain } from "@/components/Buttons"
 import LinksNav from "./LinksNav"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 
