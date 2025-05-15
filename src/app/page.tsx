@@ -10,7 +10,7 @@ export default function Home() {
           </h1>
           <ButtonMain size="text-3xl">Entrar</ButtonMain>
         </div>
-        <img className="size-80 md:size-100 lg:size-120" src="/logo.png" alt="" />
+        <img className="size-80 md:size-100 lg:size-120" src="/logo.webp" alt="" />
       </div>
       <div className="bg-[var(--color-foreground)] text-[var(--color-background)]">
         <h1 className="text-4xl font-mono font-bold text-center py-10">

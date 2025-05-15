@@ -4,8 +4,10 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { ButtonLogin } from "@/components/Buttons";
 import { InputLogin } from "@/components/Inputs";
+import { useRouter } from "next/navigation";
 
 export default function InicioSesion (){
+  const router = useRouter()
 
   const [inputUser, setInputUser] = useState('')
   const [inputLock, setInputLock] = useState('')
@@ -14,6 +16,7 @@ export default function InicioSesion (){
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("usuario: ",inputUser ,"contraseña: ", inputLock); 
+    router.push('/dashboard')
   }
 
   return (

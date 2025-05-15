@@ -18,7 +18,7 @@ export default function Login() {
         className={`flex-1 z-8 max-[560px]:hidden transition-transform duration-300 
         ${register ? `min-[560px]:translate-x-full` : `min-[560px]:translate-x-0`}`}
       >
-        <img className="w-full h-full object-cover" src={`/${register ? "imgRegister" : "imgLogin"}.webp`} alt="image login" />
+        <img className="w-full h-full object-cover" src={`/${register ? "logoSimbolo.svg" : "logo.webp"}`} alt="image login" />
       </div>
       <div 
         id="loginForm" 
