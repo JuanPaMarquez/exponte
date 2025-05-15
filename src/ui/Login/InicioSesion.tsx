@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { ButtonLogin } from "@/components/Buttons";
