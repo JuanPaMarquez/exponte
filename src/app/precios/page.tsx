@@ -1,3 +1,5 @@
+"use client"
+
 import { ButtonMain } from "@/components/Buttons"
 import { precios } from "@/mocks/precios"
 

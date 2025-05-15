@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function ButtonNav ({children, href="/"}: {children: React.ReactNode , href?: string}) {
   return (
-    <Link href={href} className="flex justify-center items-center p-2 cursor-pointer border-b-2 border-transparent hover:border-[var(--color-foreground)] hover:scale-110 transition-all duration-200 ease-in-out">
+    <Link href={href} prefetch={true} className="flex justify-center items-center p-2 cursor-pointer border-b-2 border-transparent hover:border-[var(--color-foreground)] hover:scale-110 transition-all duration-200 ease-in-out">
       {children}
     </Link>
 
@@ -25,7 +25,7 @@ export function ButtonMain ({
     : "text-[var(--color-background)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-background)]";
 
   return (
-    <Link href={href} className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}>
+    <Link href={href} prefetch={true} className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}>
       {children}
     </Link>
   );

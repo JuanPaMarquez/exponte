@@ -1,5 +1,7 @@
 export default function Dashboard() {
   return (
-    <div className="flex justify-center items-center text-center h-screen w-full">Hola dashboard</div>
+    <div className="bg-[var(--color-foreground)] text-[var(--color-background)] p-2">
+      <h1 className="text-2xl font-bold">Dashboard</h1>
+    </div>
   )
 }
