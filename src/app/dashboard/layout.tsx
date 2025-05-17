@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { ButtonMain, ButtonMainBlack } from "@/components/Buttons";
+import { ButtonMainBlack } from "@/components/Buttons";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 
