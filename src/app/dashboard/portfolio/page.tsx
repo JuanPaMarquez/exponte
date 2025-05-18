@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function PortfolioPage() {
   const [hasProject, setHasProject] = useState(false);
-  const [project, setProject] = useState([]);
+  // const [project, setProject] = useState([]);
 
   // useEffect(() => {
   //   if (localStorage.getItem("proyect") === null) {
