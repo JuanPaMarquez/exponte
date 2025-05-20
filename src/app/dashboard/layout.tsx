@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }:{ children: React.ReactNode
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
-            className="flex flex-col w-50 bg-gray-300 absolute right-0 top-[62px]"
+            className="flex flex-col w-50 bg-gray-300 absolute right-0 top-[62px] z-10"
           >
             <Link className="p-3 text-center font-bold border-t-2 cursor-pointer border-gray-400 hover:bg-gray-400" href={"/dashboard/portfolio"}>Portafolio</Link>
             <Link className="p-3 text-center font-bold border-t-2 cursor-pointer border-gray-400 hover:bg-gray-400" href={"/dashboard/ajustes"}>Ajustes</Link>
