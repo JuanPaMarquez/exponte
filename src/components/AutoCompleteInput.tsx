@@ -66,7 +66,7 @@ const AutoCompleteInput = ({ data, setValue, tecnologia, indexProyecto, index }:
           padding: '0',
           width: '100%'
         }}>
-          {suggestions.map((suggestion, index) => (
+          {suggestions.map((suggestion) => (
             <li
               key={suggestion.id}
               style={{
