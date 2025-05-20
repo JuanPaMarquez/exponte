@@ -34,12 +34,12 @@ export function Proyectos({ dataProyecto, setDataProyectos }: { dataProyecto: Da
       <h3 className="text-lg font-bold">Seccion de Proyectos</h3>
 
       {dataProyecto.map((proyecto, index) => (
-        <Proyect key={index} index={index} proyecto={proyecto} setDataProyectos={setDataProyectos} showElement={showElement} />
+        <Proyect key={proyecto.id} index={index} proyecto={proyecto} setDataProyectos={setDataProyectos} showElement={showElement} />
       ))}
       <button
         type="button"
         onClick={() => setDataProyectos((prev) => [...prev, { 
-          id: prev.length > 0 ? prev[prev.length - 1].id + 1 : 0, 
+          id: uuidv4(), 
           titulo: "", 
           descripcion: "", 
           tecnologias: [{id: uuidv4(), nombre: ""}], 

@@ -10,7 +10,7 @@ export interface Tecnologia {
 }
 
 export interface DataProyect {
-  id: number;
+  id: string;
   imagen: string;
   titulo: string;
   descripcion: string;

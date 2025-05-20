@@ -4,6 +4,7 @@ import { ButtonMainBlack } from "@/components/Buttons";
 import { Presentacion, Proyectos } from "@/ui/Portfolio/Elements";
 import { useState } from "react";
 import { DataPresentacion, DataProyect } from "@/schemas/schemas";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function PortfolioPage() {
 
@@ -15,10 +16,10 @@ export default function PortfolioPage() {
     titulos: "",
   });
   const [dataProyectos, setDataProyectos] = useState<DataProyect[]>([{
-    id: 0,
+    id: uuidv4(),
     titulo: "",
     descripcion: "",
-    tecnologias: [{id: "0", nombre: ""}],
+    tecnologias: [{id: uuidv4(), nombre: ""}],
     linkGithub: "",
     linkDemo: "",
     imagen: "",

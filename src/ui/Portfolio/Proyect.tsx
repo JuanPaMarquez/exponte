@@ -106,18 +106,10 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           className="absolute top-2 right-2 cursor-pointer flex justify-center items-center"
           onClick={() => {
             setDataProyectos((prev) => {
-              if (prev.length === 1) {
-                return [{
-                  id: 0,
-                  titulo: "",
-                  descripcion: "",
-                  tecnologias: [{id: "0", nombre: ""}],
-                  linkGithub: "",
-                  linkDemo: "",
-                  imagen: "",
-                }];
-              }
               const newProyectos = [...prev];
+              if (prev.length === 1) {
+                return newProyectos;
+              }
               newProyectos.splice(index, 1);
               return newProyectos;
             });
