@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function Navegation() {
   const pathname = usePathname().split("/")[1];
-  console.log(pathname)
+  console.log("render nav")
 
   const [navOpen, setNavOpen] = useState(false);
 
