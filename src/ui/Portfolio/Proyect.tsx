@@ -18,6 +18,8 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           newProyectos[index].imagen = e.target.value;
           return newProyectos;
         })} 
+        id={`imagen-${index}`}
+        name="imagen"
         type="text" 
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link de la foto de proyecto" 
@@ -28,6 +30,8 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           newProyectos[index].titulo = e.target.value;
           return newProyectos;
         })} 
+        id={`titulo-${index}`}
+        name="titulo"
         type="text" 
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Titulo de proyecto" 
@@ -38,6 +42,8 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           newProyectos[index].descripcion = e.target.value;
           return newProyectos;
         })} 
+        id={`descripcion-${index}`}
+        name="descripcion"
         type="text" 
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Descripcion del proyecto" 
@@ -48,6 +54,8 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           newProyectos[index].linkGithub = e.target.value;
           return newProyectos;
         })} 
+        id={`linkGithub-${index}`}
+        name="linkGithub"
         type="text" 
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link del Github" 
@@ -58,7 +66,9 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
           newProyectos[index].linkDemo = e.target.value;
           return newProyectos;
         })} 
-        type="text" 
+        id={`linkDemo-${index}`}
+        name="linkDemo"
+        type="text"
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link de la Demo" 
       />

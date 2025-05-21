@@ -16,7 +16,7 @@ export default function InicioSesion (){
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("usuario: ",inputUser ,"contraseña: ", inputLock); 
-    router.push('/dashboard')
+    router.push('/dashboard/portfolio')
   }
 
   return (

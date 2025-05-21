@@ -49,6 +49,8 @@ const AutoCompleteInput = ({ data, setValue, tecnologia, indexProyecto, index }:
   return (
     <div style={{ position: 'relative', width: '120px' }}>
       <input
+        id={`tecnologia-${indexProyecto}`}
+        name={`tecnologia-${indexProyecto}`}
         type="text"
         value={inputValue}
         onChange={handleChange}

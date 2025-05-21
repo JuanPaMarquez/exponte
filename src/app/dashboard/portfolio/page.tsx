@@ -1,9 +1,9 @@
 "use client";
 
 import { ButtonMainBlack } from "@/components/Buttons";
-import { Presentacion, Proyectos } from "@/ui/Portfolio/Elements";
+import { Presentacion, Proyectos, Redes } from "@/ui/Portfolio/Elements";
 import { useState } from "react";
-import { DataPresentacion, DataProyect } from "@/schemas/schemas";
+import { DataPresentacion, DataProyect, RedesState } from "@/schemas/schemas";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function PortfolioPage() {
@@ -25,10 +25,17 @@ export default function PortfolioPage() {
     imagen: "",
   }]);
 
+  const [redes, setRedes] = useState<RedesState>({
+    linkedin: { activo: false, usuario: "" },
+    github: { activo: false, usuario: "" },
+    twitter: { activo: false, usuario: "" },
+  });
+
   const handleSubmit = () => {
     console.log(dataPresentacion);
     console.log(dataProyectos);
-  } 
+    console.log(redes);
+  }
 
 
   return (
@@ -52,6 +59,7 @@ export default function PortfolioPage() {
 
             <Presentacion setDataPresentacion={setDataPresentacion} />
             <Proyectos dataProyecto={dataProyectos} setDataProyectos={setDataProyectos} />
+            <Redes setRedes={setRedes} redes={redes} />
 
             <button onClick={handleSubmit}>Guardar Cambios</button>
           </div>

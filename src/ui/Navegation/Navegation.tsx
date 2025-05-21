@@ -7,14 +7,12 @@ import { usePathname } from "next/navigation";
 
 export default function Navegation() {
   const pathname = usePathname().split("/")[1];
-  console.log("render nav")
-
+  
   const [navOpen, setNavOpen] = useState(false);
-
+  
   function handleNav() {
     setNavOpen(!navOpen);
   }
-
   return (
     <nav className={`flex justify-between px-5 p-2 h-17 sticky top-0 left-0 w-full bg-[var(--color-background)] z-10 ${pathname === "dashboard" ? "hidden": ""}`}>
       <div id="logo">

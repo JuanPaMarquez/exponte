@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 export function ButtonNav ({children, href="/"}: {children: React.ReactNode , href?: string}) {
   return (
@@ -81,4 +82,22 @@ export function ButtonLogin ({
       {children}
     </button>
   ) 
+}
+
+export function ButtonSection ({ 
+  showElement, 
+  setShowElement 
+}:{ 
+  showElement: boolean, 
+  setShowElement: React.Dispatch<React.SetStateAction<boolean>> 
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => setShowElement(!showElement)} 
+      className="absolute right-2 top-2 p-2 flex justify-center items-center font-bold text-2xl w-10 hover:text-gray-500 cursor-pointer"
+    >
+      {showElement ? <IoMdEye className="size-5" /> : <IoMdEyeOff className="size-5" />}
+    </button>
+  )
 }
