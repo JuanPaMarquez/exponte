@@ -1,27 +1,25 @@
 // components/AutoCompleteInput.tsx
-import { DataProyect } from '@/schemas/schemas';
+import { useDataProyectStore } from '@/lib/store/DataStore';
 import { useState } from 'react';
 
-const AutoCompleteInput = ({ data, setValue, tecnologia, indexProyecto, index }: { 
+const AutoCompleteInput = ({ data, tecnologia, indexProyecto, index }: { 
   data: { id: string; nombre: string }[], 
-  setValue: React.Dispatch<React.SetStateAction<DataProyect[]>>, 
   tecnologia: string, 
   indexProyecto: number, 
   index: number 
 }) => {
   const [inputValue, setInputValue] = useState(tecnologia);
   const [suggestions, setSuggestions] = useState<{ id: string; nombre: string }[]>([]);
+  const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
 
     // Actualizar el valor en el estado global
-    setValue((prev) => {
-      const newData = [...prev];
-      newData[indexProyecto].tecnologias[index].nombre = value;
-      return newData;
-    });
+    const newData = [...dataProyectStore];
+    newData[indexProyecto].tecnologias[index].nombre = value;
+    setDataProyectStore(newData);
 
     // Filtrar sugerencias
     if (value === "") {
@@ -38,11 +36,9 @@ const AutoCompleteInput = ({ data, setValue, tecnologia, indexProyecto, index }:
     setInputValue(suggestion.nombre);
     setSuggestions([]);
 
-    setValue((prev) => {
-      const newData = [...prev];
-      newData[indexProyecto].tecnologias[index] = suggestion; // Aquí actualizas toda la tecnología
-      return newData;
-    });
+    const newData = [...dataProyectStore];
+    newData[indexProyecto].tecnologias[index] = suggestion; // Aquí actualizas toda la tecnología
+    setDataProyectStore(newData);
   };
 
 

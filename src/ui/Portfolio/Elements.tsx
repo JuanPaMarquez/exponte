@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { DataPresentacion, DataProyect, RedesState, RedSocial } from "@/schemas/schemas";
+import { RedSocial } from "@/schemas/schemas";
 import Proyect from "@/ui/Portfolio/Proyect";
-import { v4 as uuidv4 } from 'uuid';
 import { ButtonSection } from "@/components/Buttons";
+import { useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
 
 
-export function Presentacion({ setDataPresentacion }: { setDataPresentacion: React.Dispatch<React.SetStateAction<DataPresentacion>> }) {
+export function Presentacion() {
   const [showElement, setShowElement] = useState(true);
+  const { dataPresentacionStore, setDataPresentacionStore } = usePresentacionStore();
 
   return (
     <section
@@ -25,9 +26,10 @@ export function Presentacion({ setDataPresentacion }: { setDataPresentacion: Rea
         type="text"
         placeholder="Link de foto de perfil"
         className={`border p-1 ${showElement ? "" : "hidden"}`}
-        onChange={(e) =>
-          setDataPresentacion((prev) => ({ ...prev, foto: e.target.value }))
-        }
+        onChange={(e) => {
+          const newData = { ...dataPresentacionStore, foto: e.target.value };
+          setDataPresentacionStore(newData);
+        }}
       />
 
       <input
@@ -36,9 +38,10 @@ export function Presentacion({ setDataPresentacion }: { setDataPresentacion: Rea
         type="text"
         placeholder="Nombre de presentacion"
         className={`border p-1 ${showElement ? "" : "hidden"}`}
-        onChange={(e) =>
-          setDataPresentacion((prev) => ({ ...prev, nombre: e.target.value }))
-        }
+        onChange={(e) => {
+          const newData = { ...dataPresentacionStore, nombre: e.target.value };
+          setDataPresentacionStore(newData);
+        }}
       />
 
       <input
@@ -47,9 +50,10 @@ export function Presentacion({ setDataPresentacion }: { setDataPresentacion: Rea
         type="text"
         placeholder="Titulo(s) personal(es)"
         className={`border p-1 ${showElement ? "" : "hidden"}`}
-        onChange={(e) =>
-          setDataPresentacion((prev) => ({ ...prev, titulos: e.target.value }))
-        }
+        onChange={(e) => {
+          const newData = { ...dataPresentacionStore, titulos: e.target.value };
+          setDataPresentacionStore(newData);
+        }}
       />
 
       {/* Botón para mostrar/ocultar elementos */}
@@ -59,34 +63,26 @@ export function Presentacion({ setDataPresentacion }: { setDataPresentacion: Rea
 }
 
 
-export function Proyectos({ dataProyecto, setDataProyectos }: { dataProyecto: DataProyect[], setDataProyectos: React.Dispatch<React.SetStateAction<DataProyect[]>> }) {
-  const [showElement, setShowElement] = useState(true);
+export function Proyectos() {
+  const { dataProyectStore, addProyecto } = useDataProyectStore();
+  const [ showElement, setShowElement] = useState(true);
 
   return (
     <section id="proyectos" className={`flex flex-col bg-gray-200 w-full gap-1 p-3 border rounded-2xl relative ${showElement ? "" : "text-gray-500"}`}>
       <h3 className="text-lg font-bold">Seccion de Proyectos</h3>
 
-      {dataProyecto.map((proyecto, index) => (
+      {dataProyectStore.map((proyecto, index) => (
         <Proyect 
           key={proyecto.id} 
           index={index} 
           proyecto={proyecto} 
-          setDataProyectos={setDataProyectos} 
           showElement={showElement} 
         />
       ))}
 
       <button
         type="button"
-        onClick={() => setDataProyectos((prev) => [...prev, { 
-          id: uuidv4(), 
-          titulo: "", 
-          descripcion: "", 
-          tecnologias: [{id: uuidv4(), nombre: ""}], 
-          linkGithub: "", 
-          linkDemo: "", 
-          imagen: "" 
-        }])}
+        onClick={addProyecto}
         className={`flex items-center justify-center gap-2 p-2 border rounded-2xl bg-gray-300 hover:bg-gray-400 cursor-pointer ${showElement ? "" : "hidden"}`}
       >
         Agregar Proyecto
@@ -97,37 +93,30 @@ export function Proyectos({ dataProyecto, setDataProyectos }: { dataProyecto: Da
   )
 }
 
-export function Redes({ 
-  redes, 
-  setRedes
-}: {
-  redes: RedesState,
-  setRedes: React.Dispatch<React.SetStateAction<RedesState>>
-}) {
+export function Redes() {
   const [showElement, setShowElement] = useState(true);
+  const { redesStore, setRedesStore } = useRedesStore();
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
     const id = e.target.id.split("-")[0] as RedSocial;
-    setRedes((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        activo: checked,
-      },
-    }));
+    const newRedes = { ...redesStore };
+    newRedes[id] = {
+      ...newRedes[id],
+      activo: checked,
+    };
+    setRedesStore(newRedes);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const id = e.target.id.split("-")[0] as RedSocial;
-    setRedes((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        usuario: value,
-      },
-    }));
+    const newRedes = { ...redesStore };
+    newRedes[id] = {
+      ...newRedes[id],
+      usuario: value,
+    };
+    setRedesStore(newRedes);
   };
 
   return (
@@ -135,7 +124,7 @@ export function Redes({
       <h3 className="text-lg font-bold">Seccion de Redes</h3>
 
        <div className="flex flex-col gap-2">
-        {Object.entries(redes).map(([key, value]) => (
+        {Object.entries(redesStore).map(([key, value]) => (
           <div key={key} className={`border border-gray-500 rounded-2xl p-2 ${value.activo ? "" : "text-gray-500"}`}>
             <label className="flex justify-between items-center cursor-pointer">
               <span className="capitalize font-bold">{key.toUpperCase()}</span>

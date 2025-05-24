@@ -1,20 +1,24 @@
 "use client"
 import { ButtonMain } from "@/components/Buttons"
 import LinksNav from "./LinksNav"
-import { useState } from "react";
+import { useMemo, useState, /* useRef */ } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 
 export default function Navegation() {
   const pathname = usePathname().split("/")[1];
-  
+  const isDashboard = useMemo(() => pathname === "dashboard", [pathname]);
   const [navOpen, setNavOpen] = useState(false);
-  
+  // const renders = useRef(0);
+
+  // renders.current++;
+  // console.log("Render count: ", renders.current);
+
   function handleNav() {
     setNavOpen(!navOpen);
   }
   return (
-    <nav className={`flex justify-between px-5 p-2 h-17 sticky top-0 left-0 w-full bg-[var(--color-background)] z-10 ${pathname === "dashboard" ? "hidden": ""}`}>
+    <nav className={`flex justify-between px-5 p-2 h-17 sticky top-0 left-0 w-full bg-[var(--color-background)] z-10 ${isDashboard ? "hidden": ""}`}>
       <div id="logo">
         <button className="titulo hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer">
           EXPONTE

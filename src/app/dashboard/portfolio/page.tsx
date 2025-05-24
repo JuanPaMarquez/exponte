@@ -3,38 +3,19 @@
 import { ButtonMainBlack } from "@/components/Buttons";
 import { Presentacion, Proyectos, Redes } from "@/ui/Portfolio/Elements";
 import { useState } from "react";
-import { DataPresentacion, DataProyect, RedesState } from "@/schemas/schemas";
-import { v4 as uuidv4 } from 'uuid';
+import { useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
 
 export default function PortfolioPage() {
+  const { dataProyectStore } = useDataProyectStore();
+  const { dataPresentacionStore } = usePresentacionStore();
+  const { redesStore } = useRedesStore();
 
   const [hasProject, setHasProject] = useState(false);
 
-  const [dataPresentacion, setDataPresentacion] = useState<DataPresentacion>({
-    foto: "",
-    nombre: "",
-    titulos: "",
-  });
-  const [dataProyectos, setDataProyectos] = useState<DataProyect[]>([{
-    id: uuidv4(),
-    titulo: "",
-    descripcion: "",
-    tecnologias: [{id: uuidv4(), nombre: ""}],
-    linkGithub: "",
-    linkDemo: "",
-    imagen: "",
-  }]);
-
-  const [redes, setRedes] = useState<RedesState>({
-    linkedin: { activo: false, usuario: "" },
-    github: { activo: false, usuario: "" },
-    twitter: { activo: false, usuario: "" },
-  });
-
   const handleSubmit = () => {
-    console.log(dataPresentacion);
-    console.log(dataProyectos);
-    console.log(redes);
+    console.log(dataPresentacionStore);
+    console.log(dataProyectStore);
+    console.log(redesStore);
   }
 
 
@@ -57,9 +38,9 @@ export default function PortfolioPage() {
             <h1 className="text-2xl font-bold">Mi Portafolio</h1>
             <p className="text-lg">Aquí puedes ver todos los elementos de un portafolio:</p>
 
-            <Presentacion setDataPresentacion={setDataPresentacion} />
-            <Proyectos dataProyecto={dataProyectos} setDataProyectos={setDataProyectos} />
-            <Redes setRedes={setRedes} redes={redes} />
+            <Presentacion />
+            <Proyectos />
+            <Redes />
 
             <button onClick={handleSubmit}>Guardar Cambios</button>
           </div>

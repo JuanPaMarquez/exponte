@@ -1,4 +1,5 @@
 import AutoCompleteInput from "@/components/AutoCompleteInput";
+import { useDataProyectStore } from "@/lib/store/DataStore";
 import { DataProyect } from "@/schemas/schemas";
 import { techIcons } from "@/utils/techIcons";
 import { FaDeleteLeft } from "react-icons/fa6";
@@ -7,17 +8,26 @@ import { MdDelete } from "react-icons/md";
 import { v4 as uuidv4 } from 'uuid';
 
 
-export default function Proyect({ proyecto, setDataProyectos, showElement, index }: { proyecto: DataProyect, setDataProyectos: React.Dispatch<React.SetStateAction<DataProyect[]>>, showElement: boolean, index: number }) {
+export default function Proyect({ 
+  proyecto, 
+  showElement, 
+  index 
+}:{ 
+  proyecto: DataProyect, 
+  showElement: boolean, 
+  index: number 
+}) {
+  const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
 
   return (
     <div className={`relative border rounded-2xl border-gray-800 flex flex-col p-2 ${showElement ? "" : "hidden"}`}>
       <h3 className="text-md text-center font-bold p-1">Proyecto {proyecto.id + 1}</h3>
       <input 
-        onChange={(e) => setDataProyectos((prev) => {
-          const newProyectos = [...prev];
+        onChange={(e) => {
+          const newProyectos = [...dataProyectStore];
           newProyectos[index].imagen = e.target.value;
-          return newProyectos;
-        })} 
+          setDataProyectStore(newProyectos);
+        }} 
         id={`imagen-${index}`}
         name="imagen"
         type="text" 
@@ -25,11 +35,11 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         placeholder="Link de la foto de proyecto" 
       />
       <input 
-        onChange={(e) => setDataProyectos((prev) => {
-          const newProyectos = [...prev];
+        onChange={(e) => {
+          const newProyectos = [...dataProyectStore];
           newProyectos[index].titulo = e.target.value;
-          return newProyectos;
-        })} 
+          setDataProyectStore(newProyectos);
+        }} 
         id={`titulo-${index}`}
         name="titulo"
         type="text" 
@@ -37,11 +47,11 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         placeholder="Titulo de proyecto" 
       />
       <input 
-        onChange={(e) => setDataProyectos((prev) => {
-          const newProyectos = [...prev];
+        onChange={(e) => {
+          const newProyectos = [...dataProyectStore];
           newProyectos[index].descripcion = e.target.value;
-          return newProyectos;
-        })} 
+          setDataProyectStore(newProyectos);
+        }} 
         id={`descripcion-${index}`}
         name="descripcion"
         type="text" 
@@ -49,11 +59,11 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         placeholder="Descripcion del proyecto" 
       />
       <input 
-        onChange={(e) => setDataProyectos((prev) => {
-          const newProyectos = [...prev];
+        onChange={(e) => {
+          const newProyectos = [...dataProyectStore];
           newProyectos[index].linkGithub = e.target.value;
-          return newProyectos;
-        })} 
+          setDataProyectStore(newProyectos);
+        }} 
         id={`linkGithub-${index}`}
         name="linkGithub"
         type="text" 
@@ -61,11 +71,11 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         placeholder="Link del Github" 
       />
       <input 
-        onChange={(e) => setDataProyectos((prev) => {
-          const newProyectos = [...prev];
+        onChange={(e) => {
+          const newProyectos = [...dataProyectStore];
           newProyectos[index].linkDemo = e.target.value;
-          return newProyectos;
-        })} 
+          setDataProyectStore(newProyectos);
+        }} 
         id={`linkDemo-${index}`}
         name="linkDemo"
         type="text"
@@ -81,7 +91,6 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
               index={indexTecnologia}
               tecnologia={tecnologia.nombre}
               data={techIcons}
-              setValue={setDataProyectos}
             />
 
           ))
@@ -89,11 +98,9 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         <button 
           className="cursor-pointer flex justify-center items-center"
           onClick={() => {
-            setDataProyectos((prev) => {
-              const newProyectos = [...prev];
-              newProyectos[index].tecnologias = [...newProyectos[index].tecnologias, {id: uuidv4(), nombre: ""}];
-              return newProyectos;
-            });
+            const newProyectos = [...dataProyectStore];
+            newProyectos[index].tecnologias = [...newProyectos[index].tecnologias, {id: uuidv4(), nombre: ""}];
+            setDataProyectStore(newProyectos);
           }}
         >
           <IoIosAddCircleOutline className="size-8" />
@@ -101,13 +108,11 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         <button 
           className="cursor-pointer flex justify-center items-center"
           onClick={() => {
-            setDataProyectos((prev) => {
-              const newProyectos = [...prev];
-              if (newProyectos[index].tecnologias.length > 1) {
-                newProyectos[index].tecnologias = newProyectos[index].tecnologias.slice(0, -1);
-              }
-              return newProyectos;
-            });
+            const newProyectos = [...dataProyectStore];
+            if (newProyectos[index].tecnologias.length > 1) {
+              newProyectos[index].tecnologias = newProyectos[index].tecnologias.slice(0, -1);
+            }
+            setDataProyectStore(newProyectos);
           }}
         >
           <MdDelete className="size-8" />
@@ -115,14 +120,13 @@ export default function Proyect({ proyecto, setDataProyectos, showElement, index
         <button id="delete-project"
           className="absolute top-2 right-2 cursor-pointer flex justify-center items-center"
           onClick={() => {
-            setDataProyectos((prev) => {
-              const newProyectos = [...prev];
-              if (prev.length === 1) {
-                return newProyectos;
-              }
-              newProyectos.splice(index, 1);
-              return newProyectos;
-            });
+            const newProyectos = [...dataProyectStore];
+            if (dataProyectStore.length === 1) {
+              setDataProyectStore(newProyectos);
+              return;
+            }
+            newProyectos.splice(index, 1);
+            setDataProyectStore(newProyectos);
           }}
         >
           <FaDeleteLeft className="size-6" />
