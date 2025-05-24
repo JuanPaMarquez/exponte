@@ -1,4 +1,4 @@
-import { DataPresentacion, DataProyect, RedesState, RedSocial } from "./schemas";
+import { DataPresentacion, DataProyect, RedesState } from "./schemas";
 
 export interface PresentacionStore {
   dataPresentacionStore: DataPresentacion;
