@@ -1,0 +1,8 @@
+{
+  "linkedin": { "activo": false, "usuario": "" },
+  "github": { "activo": true, "usuario": "" },
+  "gmail": { "activo": true, "usuario": "" },
+  "instagram": { "activo": true, "usuario": "" },
+  "facebook": { "activo": false, "usuario": "" },
+  "youtube": { "activo": false, "usuario": "" }
+}

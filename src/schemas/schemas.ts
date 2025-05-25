@@ -18,5 +18,5 @@ export interface DataProyect {
   linkDemo: string;
 }
 
-export type RedSocial = "linkedin" | "github" | "twitter" | "instagram" | "facebook" | "youtube";
+export type RedSocial = "linkedin" | "github" | "gmail" | "instagram" | "facebook" | "youtube";
 export type RedesState = Record<RedSocial, { activo: boolean; usuario: string }>;

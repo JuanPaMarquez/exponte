@@ -50,7 +50,7 @@ export const useRedesStore = create<RedesStore>((set) => ({
   redesStore: {
     linkedin: { activo: false, usuario: "" },
     github: { activo: false, usuario: "" },
-    twitter: { activo: false, usuario: "" },
+    gmail: { activo: false, usuario: "" },
     instagram: { activo: false, usuario: "" },
     facebook: { activo: false, usuario: "" },
     youtube: { activo: false, usuario: "" },

@@ -22,6 +22,9 @@
     --foreground: #ededed;
   }
 } */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--background);
