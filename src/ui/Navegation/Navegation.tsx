@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function Navegation() {
   const pathname = usePathname().split("/")[1];
-  const isDashboard = useMemo(() => pathname === "dashboard", [pathname]);
+  const isDashboard = useMemo(() => pathname === "dashboard" || pathname === "portfolio", [pathname]);
   const [navOpen, setNavOpen] = useState(false);
   // const renders = useRef(0);
 

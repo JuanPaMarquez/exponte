@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from 'uuid';
-import { PresentacionStore, DataProyectStore, RedesStore } from "@/schemas/schemasStore";
+import { 
+  PresentacionStore, 
+  DataProyectStore, 
+  RedesStore, 
+  ColoresStore, 
+  UserStore 
+} from "@/schemas/schemasStore";
 
 export const usePresentacionStore = create<PresentacionStore>((set) => ({
   dataPresentacionStore: {
@@ -52,3 +58,19 @@ export const useRedesStore = create<RedesStore>((set) => ({
   setRedesStore: (newRedes) => set({ redesStore: newRedes }),
 }));
 
+export const useColoresStore = create<ColoresStore>((set) => ({
+  coloresStore: {
+    textoColor: { label: "Color de texto:", color: "#ffffff" },
+    textoTituloColor: { label: "Color de título:", color: "#8fdaff" },
+    navegacionColor: { label: "Fondo de navegación:", color: "#287dbe" },
+    presentacionColor: { label: "Fondo de presentación:", color: "#0d2a3f" },
+    proyectosColor: { label: "Fondo de proyectos:", color: "#21689e" },
+    redesColor: { label: "Fondo de redes:", color: "#0d2a3f" },
+  },
+  setColoresStore: (newColores) => set({ coloresStore: newColores }),
+}));
+
+export const useUserStore = create<UserStore>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+}));

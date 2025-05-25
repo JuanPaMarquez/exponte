@@ -6,7 +6,6 @@ import { useState } from "react"
 export default function Register() {
 
   const [inputName, setInputName] = useState('')
-  const [inputLastName, setInputLastName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setPassword] = useState('')
   const [inputPasswordRepat, setInputPasswordRepat] = useState('')
@@ -30,13 +29,7 @@ export default function Register() {
             inputElement={inputName} 
             setInputElement={setInputName} 
             type="text" 
-            placeholder="Nombre" 
-          />
-          <InputRegister 
-            inputElement={inputLastName} 
-            setInputElement={setInputLastName} 
-            type="text" 
-            placeholder="Apellido" 
+            placeholder="Nombre de usuario" 
           />
           <InputRegister 
             inputElement={inputEmail} 

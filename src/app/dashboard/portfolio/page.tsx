@@ -4,6 +4,7 @@ import { ButtonMainBlack } from "@/components/Buttons";
 import { Presentacion, Proyectos, Redes } from "@/ui/Portfolio/Elements";
 import { useState } from "react";
 import { useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
+import { redirect } from "next/navigation"
 
 export default function PortfolioPage() {
   const { dataProyectStore } = useDataProyectStore();
@@ -18,6 +19,9 @@ export default function PortfolioPage() {
     console.log(redesStore);
   }
 
+  const handleDeploy = () => {
+    redirect("/portfolio/default");
+  }
 
   return (
     <div className="flex flex-col items-center h-full gap-2">
@@ -41,8 +45,11 @@ export default function PortfolioPage() {
             <Presentacion />
             <Proyectos />
             <Redes />
+            <div className="my-4 flex flex-col gap-2">
+              <ButtonMainBlack black={false} onClick={handleSubmit}>Guardar Cambios</ButtonMainBlack>
+              <ButtonMainBlack black={false} onClick={handleDeploy}>Desplegar</ButtonMainBlack>
 
-            <button onClick={handleSubmit}>Guardar Cambios</button>
+            </div>
           </div>
         )
       }
