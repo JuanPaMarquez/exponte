@@ -104,7 +104,7 @@ export default function PortafolioUsuarioPage() {
         <div className="flex flex-col md:flex-row justify-center items-center gap-5 flex-wrap py-10">
           {
             Object.entries(redesStore)
-              .filter(([_, red]) => red.activo)
+              .filter(([, red]) => red.activo)
               .map(([key, red]) => (
                 <a 
                   key={key} 
