@@ -38,7 +38,7 @@ export default function PortfolioPage() {
 
       {
         hasProject && (
-          <div id="page-content" className="flex flex-col items-center h-full gap-2 pt-2 max-w-[800px] w-full">
+          <div id="page-content" className="flex flex-col items-center h-full gap-4 pt-2 max-w-[800px] w-full">
             <h1 className="text-2xl font-bold">Mi Portafolio</h1>
             <p className="text-lg">Aquí puedes ver todos los elementos de un portafolio:</p>
 

@@ -2,16 +2,28 @@
 import { getDataPresentacion, getDataProyects, getDataRedes } from "@/lib/dataActions";
 import { useColoresStore, useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { redesIcon } from "@/utils/redIcons";
+import PageProyect from "@/ui/Usuario/PageProyect";
+import { DataProyect } from "@/schemas/schemas";
+import Tecnologias from "@/ui/Usuario/Tecnologias";
 
 export default function PortafolioUsuarioPage() {
   const { coloresStore } = useColoresStore();
   const { dataPresentacionStore, setDataPresentacionStore } = usePresentacionStore();
   const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
   const { redesStore, setRedesStore } = useRedesStore();
+
+  const [proyectOpen, setProyectOpen] = useState(false);
+  const [currentProyect, setCurrentProyect] = useState<DataProyect>();
+
   const pathname = usePathname().split("/")[2];
-  
+
+  const handleShowProyect = (proyecto: DataProyect) => {
+    setCurrentProyect(proyecto);
+    setProyectOpen(true);
+  }
+
   useEffect(() => {
     getDataPresentacion().then((data) => {
       setDataPresentacionStore(data);
@@ -30,7 +42,7 @@ export default function PortafolioUsuarioPage() {
     >
       <nav 
         style={{ backgroundColor: coloresStore.navegacionColor.color }}
-        className="flex flex-col md:flex-row items-center justify-between px-3 py-5 fixed top-0 left-0 w-full z-10 gap-2"
+        className="flex flex-col md:flex-row items-center justify-between px-6 py-5 fixed top-0 left-0 w-full z-10 gap-2"
       >
         <h1 style={{ color: coloresStore.textoColor.color }} className="text-3xl font-bold">Portafolio</h1>
         <div
@@ -74,27 +86,47 @@ export default function PortafolioUsuarioPage() {
         >
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(385px,386px))] max-[400px]:grid-cols-[auto] gap-4 place-content-center">
             {dataProyectStore.map((proyecto) => (
-              <div key={proyecto.id} className="flex flex-col justify-center border-2 rounded-[20px]">
-                <div id="img-container" className="relative">
-                  <img className="w-100 h-80 object-cover rounded-t-[20px]" src={proyecto.imagen || "/fallback-image.webp"} alt="" />
-                  <div className="flex justify-center absolute bg-[#24232381] overflow-hidden backdrop-blur-sm w-full bottom-0">
-                    <h1 
+              <div key={proyecto.id} className="flex flex-col justify-center border-2 rounded-[20px] overflow-hidden hover:scale-102 transition-all duration-100 ease-in-out">
+                <div className="relative">
+                  <img 
+                    id={`imagen-${proyecto.id}`} 
+                    onClick={()=> handleShowProyect(proyecto)} 
+                    className="w-100 h-80 object-cover rounded-t-[20px] cursor-pointer" 
+                    src={proyecto.imagen || "/fallback-image.webp"} 
+                    alt="" 
+                  />
+                  <div className="flex flex-col justify-center absolute bg-[#24232381] overflow-hidden backdrop-blur-sm w-full bottom-0">
+                    <h3 
                       style={{ color: coloresStore.textoColor.color }} 
-                      className="text-2xl font-bold">{proyecto.titulo}
-                    </h1>
+                      className="text-2xl font-bold text-center pt-2"
+                    >
+                      {proyecto.titulo}
+                    </h3>
+                    <Tecnologias proyecto={proyecto} />
                   </div>
                 </div>
-                <a href={proyecto.linkGithub} target="_blank" rel="noopener noreferrer">
-                  <button  
-                    className="px-4 py-2 rounded-lg text-white"
-                  >
-                    Ver Proyecto
-                  </button>
-                </a>
+                <div className="flex justify-center w-full">
+                  <a href={proyecto.linkGithub} target="_blank" rel="noopener noreferrer" className="flex justify-center w-full">
+                    <button className="py-1 text-white bg-[#0d2a3f] w-full font-bold text-lg cursor-pointer">
+                      Github
+                    </button>
+                  </a>
+                  {
+                    proyecto.linkDemo === "" ? null : (
+                      <a href={proyecto.linkDemo} target="_blank" rel="noopener noreferrer" className="flex justify-center w-full">
+                        <button className="py-1 bg-[#35a6fd] w-full font-bold text-lg cursor-pointer">
+                          Ver Proyecto
+                        </button>
+                      </a>
+                    )
+                  }
+                </div>
               </div>
             ))}
-
           </div>
+          { proyectOpen && (
+            <PageProyect setProyectOpen={setProyectOpen} proyecto={currentProyect} />
+          )}
         </div>
       </section>
       <section id="contacts" className="bg-[#0d2a3f] text-white flex flex-col items-center text-center py-10">

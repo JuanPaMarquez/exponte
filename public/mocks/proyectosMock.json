@@ -37,11 +37,11 @@
     "tecnologias": [
       {
         "id": "1",
-        "nombre": "React"
+        "nombre": "Reactjs"
       },
       {
         "id": "2",
-        "nombre": "Node.js"
+        "nombre": "Nodejs"
       },
       {
         "id": "3",
@@ -57,7 +57,7 @@
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",
-    "linkDemo": "https://juanpamarquez.github.io/links/"
+    "linkDemo": ""
   },
   {
     "id": "3",
@@ -67,11 +67,11 @@
     "tecnologias": [
       {
         "id": "1",
-        "nombre": "React"
+        "nombre": "Reactjs"
       },
       {
         "id": "2",
-        "nombre": "Node.js"
+        "nombre": "Nodejs"
       },
       {
         "id": "3",
@@ -97,7 +97,7 @@
     "tecnologias": [
       {
         "id": "1",
-        "nombre": "React"
+        "nombre": "Reactjs"
       },
       {
         "id": "2",
@@ -127,11 +127,11 @@
     "tecnologias": [
       {
         "id": "1",
-        "nombre": "React"
+        "nombre": "Reactjs"
       },
       {
         "id": "2",
-        "nombre": "Node.js"
+        "nombre": "Nodejs"
       },
       {
         "id": "3",

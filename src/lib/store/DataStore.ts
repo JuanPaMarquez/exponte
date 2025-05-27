@@ -19,10 +19,10 @@ export const usePresentacionStore = create<PresentacionStore>((set) => ({
 
 export const useDataProyectStore = create<DataProyectStore>((set, get) => ({
   dataProyectStore: [{
-    id: uuidv4(),
+    id: "0",
     titulo: "",
     descripcion: "",
-    tecnologias: [{id: uuidv4(), nombre: ""}],
+    tecnologias: [{id: "0", nombre: ""}],
     linkGithub: "",
     linkDemo: "",
     imagen: "",
