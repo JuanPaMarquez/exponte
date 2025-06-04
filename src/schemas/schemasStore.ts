@@ -8,7 +8,6 @@ export interface PresentacionStore {
 export interface DataProyectStore {
   dataProyectStore: DataProyect[];
   setDataProyectStore: (newData: DataProyect[]) => void;
-  addProyecto: () => void;
 }
 
 export interface RedesStore {
@@ -31,12 +30,14 @@ export interface ColoresStore {
 }
 
 interface User {
-  idUsuario: number;
+  id: number;
   email: string;
-  password: string;
+  nombre_usuario: string;
 }
 
 export interface UserStore {
   user: User | null;
   setUser: (user: User) => void;
+  hasHydrated: boolean;
+  setHasHydrated: (hasHydrated: boolean) => void;
 }

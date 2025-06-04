@@ -1,16 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RedSocial } from "@/schemas/schemas";
 import Proyect from "@/ui/Portfolio/Proyect";
-import { ButtonSection } from "@/components/Buttons";
-import { useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
+import { ButtonMainBlack, ButtonSection } from "@/components/Buttons";
+import { useDataProyectStore, usePresentacionStore, useRedesStore, useUserStore } from "@/lib/store/DataStore";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getPresentacion, updatePresentacion } from "@/lib/api/presentacionAPI";
+import { getProyectos, setProyectoEmpty } from "@/lib/api/proyectoAPI";
 
 
 export function Presentacion() {
   const [showElement, setShowElement] = useState(true);
+  const [mutationError, setMutationError] = useState<string | null>(null);
   const { dataPresentacionStore, setDataPresentacionStore } = usePresentacionStore();
+  const user = useUserStore(state => state.user)
+  const userId = user?.id;
 
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['presentacion', userId],
+    queryFn: () => getPresentacion(userId!),
+    enabled: !!userId
+  });
+
+  
+  useEffect(() => {
+    if (data) setDataPresentacionStore(data);
+  }, [data]);
+  
+  const { isPending, mutate } = useMutation({
+    mutationFn: updatePresentacion,
+    onSuccess: () => console.log("Actualizado con éxito"),
+    onError: (error: any) => {
+      setMutationError(error.message || "Error desconocido al actualizar");
+    },
+  });
+  
+  const handleSubmit = () => {
+    mutate(dataPresentacionStore);
+  };
   return (
     <section
       id="presentacion"
@@ -25,6 +53,7 @@ export function Presentacion() {
         name="foto"
         type="text"
         placeholder="Link de foto de perfil"
+        value={dataPresentacionStore.foto ?? ''}
         className={`border p-1 ${showElement ? "" : "hidden"}`}
         onChange={(e) => {
           const newData = { ...dataPresentacionStore, foto: e.target.value };
@@ -37,6 +66,7 @@ export function Presentacion() {
         name="nombre"
         type="text"
         placeholder="Nombre de presentacion"
+        value={dataPresentacionStore.nombre ?? ''}
         className={`border p-1 ${showElement ? "" : "hidden"}`}
         onChange={(e) => {
           const newData = { ...dataPresentacionStore, nombre: e.target.value };
@@ -49,6 +79,7 @@ export function Presentacion() {
         name="titulos"
         type="text"
         placeholder="Titulo(s) personal(es)"
+        value={dataPresentacionStore.titulos ?? ''}
         className={`border p-1 ${showElement ? "" : "hidden"}`}
         onChange={(e) => {
           const newData = { ...dataPresentacionStore, titulos: e.target.value };
@@ -58,14 +89,56 @@ export function Presentacion() {
 
       {/* Botón para mostrar/ocultar elementos */}
       <ButtonSection showElement={showElement} setShowElement={setShowElement} />
+      { error && <p className="text-red-500">Error al cargar los datos: {error.message}</p>}
+      { isLoading && <p>Cargando...</p>}
+      { mutationError && <p className="text-red-500">Error al guardar: {mutationError}</p>}
+      <div className="ml-auto mt-2 ">
+        <ButtonMainBlack black={false} onClick={handleSubmit} >{isPending ? "Guardando..." : "Guardar Cambios"}</ButtonMainBlack>
+      </div>
     </section>
   );
 }
 
 
 export function Proyectos() {
-  const { dataProyectStore, addProyecto } = useDataProyectStore();
+  const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
   const [ showElement, setShowElement] = useState(true);
+  const [mutationError, setMutationError] = useState<string | null>(null);
+  const user = useUserStore(state => state.user)
+  const userId = user?.id;
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['proyectos', userId],
+    queryFn: () => getProyectos(userId!),
+    enabled: !!userId
+  });
+
+  useEffect(() => {
+    if (data) setDataProyectStore(data);
+  }, [data]);
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: setProyectoEmpty,
+    onSuccess: (data) => {
+      console.log("Actualizado con éxito")
+      console.log("Nuevo proyecto:", data);
+      const newDataProyecto = [
+        ...dataProyectStore, 
+        {
+          ...data.proyectos[0],
+        }
+      ]
+
+      setDataProyectStore(newDataProyecto)
+    },
+    onError: (error: any) => {
+      setMutationError(error.message || "Error desconocido al actualizar");
+    },
+  });
+  
+  const handleSubmit = () => {
+    mutate(userId!);
+  };
 
   return (
     <section id="proyectos" className={`flex flex-col bg-gray-200 w-full gap-1 p-3 border rounded-2xl relative ${showElement ? "" : "text-gray-500"}`}>
@@ -82,12 +155,15 @@ export function Proyectos() {
 
       <button
         type="button"
-        onClick={addProyecto}
+        onClick={handleSubmit}
         className={`flex items-center justify-center gap-2 p-2 border rounded-2xl bg-gray-300 hover:bg-gray-400 cursor-pointer ${showElement ? "" : "hidden"}`}
       >
-        Agregar Proyecto
+        { isPending ? "Añadiendo proyecto..." : "Añadir Proyecto"}
       </button>
+      { mutationError && <p className="text-red-500">Error al añadir proyecto: {mutationError}</p>}
       { /* boton para mostrar/ocultar elementos */}
+      { isLoading && <p>Cargando proyectos...</p>}
+      { error && <p className="text-red-500">Error al cargar los proyectos: {error.message}</p>}
       <ButtonSection showElement={showElement} setShowElement={setShowElement} />
     </section>
   )

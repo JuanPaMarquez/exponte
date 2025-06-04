@@ -1,8 +1,10 @@
+"use client";
+import { useUserStore } from "@/lib/store/DataStore"
 import { redirect } from "next/navigation"
 
 export default function DashboardPage() {
-
-  redirect("/dashboard/portfolio")
+  
+  redirect("/dashboard/portfolio");
 
   return (
     <div>

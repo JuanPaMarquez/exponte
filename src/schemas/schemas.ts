@@ -1,15 +1,16 @@
 export interface DataPresentacion {
+  id: number;
   foto: string;
   nombre: string;
   titulos: string;
 }
 export interface Tecnologia {
-  id: string;
+  id: number;
   nombre: string;
 }
 
 export interface DataProyect {
-  id: string;
+  id: number;
   imagen: string;
   titulo: string;
   descripcion: string;

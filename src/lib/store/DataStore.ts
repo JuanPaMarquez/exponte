@@ -1,3 +1,5 @@
+"use client";
+
 import { create } from "zustand";
 import { v4 as uuidv4 } from 'uuid';
 import { 
@@ -7,9 +9,11 @@ import {
   ColoresStore, 
   UserStore 
 } from "@/schemas/schemasStore";
+import { persist } from "zustand/middleware";
 
 export const usePresentacionStore = create<PresentacionStore>((set) => ({
   dataPresentacionStore: {
+    id: 0,
     foto: "",
     nombre: "",
     titulos: "",
@@ -19,30 +23,15 @@ export const usePresentacionStore = create<PresentacionStore>((set) => ({
 
 export const useDataProyectStore = create<DataProyectStore>((set, get) => ({
   dataProyectStore: [{
-    id: "0",
+    id: 0,
     titulo: "",
     descripcion: "",
-    tecnologias: [{id: "0", nombre: ""}],
+    tecnologias: [{id: 0, nombre: ""}],
     linkGithub: "",
     linkDemo: "",
     imagen: "",
   }],
-  setDataProyectStore: (newData) => set({ dataProyectStore: newData }),
-  addProyecto: () =>
-    set({
-      dataProyectStore: [
-        ...get().dataProyectStore,
-        {
-          id: uuidv4(),
-          titulo: "",
-          descripcion: "",
-          tecnologias: [{ id: uuidv4(), nombre: "" }],
-          linkGithub: "",
-          linkDemo: "",
-          imagen: "",
-        },
-      ],
-    }),
+  setDataProyectStore: (newData) => set({ dataProyectStore: newData })
 }));
 
 
@@ -70,7 +59,20 @@ export const useColoresStore = create<ColoresStore>((set) => ({
   setColoresStore: (newColores) => set({ coloresStore: newColores }),
 }));
 
-export const useUserStore = create<UserStore>((set) => ({
-  user: null,
-  setUser: (user) => set({ user }),
-}));
+export const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      user: null,
+      setUser: (user: UserStore["user"]) => set({ user }),
+      hasHydrated: false,
+      setHasHydrated: (hasHydrated) => set({ hasHydrated }),
+    }),
+    {
+      name: "usuario", // unique name for the storage
+      partialize: (state) => ({ user: state.user }), // use localStorage as the storage
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
+    }
+  )
+);

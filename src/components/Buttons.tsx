@@ -37,11 +37,13 @@ export function ButtonMainBlack ({
   onClick,
   size="text-md",
   black=true,
+  disabled=false
 }: {
   children: React.ReactNode, 
   onClick?: () => void,
   size?: string
   black?: boolean,
+  disabled?: boolean
 }) {
   const color = black 
     ? "text-[var(--color-foreground)] hover:text-[var(--color-background)] hover:bg-[var(--color-foreground)]" 
@@ -50,6 +52,7 @@ export function ButtonMainBlack ({
   return (
     <button
       onClick={onClick} 
+      disabled={disabled}
       className={`flex justify-center items-center py-2 px-4 cursor-pointer ${size} border-2 rounded-3xl font-bold ${color}`}
     >
       {children}
@@ -62,11 +65,13 @@ export function ButtonLogin ({
   onClick,
   type='button',
   black=true,
+  disabled=false,
 }:{ 
   children: React.ReactNode, 
   onClick?: () => void,
   type?: "button" | "submit" | "reset", 
   black?: boolean,
+  disabled?: boolean
 }) {
 
   const color = black 
@@ -76,6 +81,7 @@ export function ButtonLogin ({
   return (
     <button 
       type={type} 
+      disabled={disabled}
       onClick={onClick}
       className={`w-60 h-9 border-1 rounded-2xl cursor-pointer ${color}`}
     >

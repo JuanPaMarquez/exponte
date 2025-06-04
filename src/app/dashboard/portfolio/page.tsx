@@ -48,7 +48,6 @@ export default function PortfolioPage() {
             <div className="my-4 flex flex-col gap-2">
               <ButtonMainBlack black={false} onClick={handleSubmit}>Guardar Cambios</ButtonMainBlack>
               <ButtonMainBlack black={false} onClick={handleDeploy}>Desplegar</ButtonMainBlack>
-
             </div>
           </div>
         )

@@ -1,12 +1,26 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonMainBlack } from "@/components/Buttons";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
+import { useUserStore } from "@/lib/store/DataStore";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({ children }:{ children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  const user = useUserStore((state) => state.user)
+  const hasHydrated = useUserStore((state) => state.hasHydrated)
+
+  useEffect(() => {
+    if (!hasHydrated) return;
+
+    if (!user) {
+      redirect("/login");
+    }
+    
+  }, [user, hasHydrated]);
 
   return (
     <main className="flex flex-col bg-[var(--color-foreground)] text-[var(--color-background)] min-h-screen relative">

@@ -1,12 +1,12 @@
 import AutoCompleteInput from "@/components/AutoCompleteInput";
+import { deleteProyecto } from "@/lib/api/proyectoAPI";
 import { useDataProyectStore } from "@/lib/store/DataStore";
 import { DataProyect } from "@/schemas/schemas";
 import { techIcons } from "@/utils/techIcons";
+import { useMutation } from "@tanstack/react-query";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
-import { v4 as uuidv4 } from 'uuid';
-
 
 export default function Proyect({ 
   proyecto, 
@@ -19,9 +19,28 @@ export default function Proyect({
 }) {
   const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
 
+  const { mutate } = useMutation({
+    mutationFn: deleteProyecto,
+    onSuccess: () => {
+      console.log("Proyecto eliminado con éxito");
+      const newProyectos = [...dataProyectStore];
+      newProyectos.splice(index, 1);
+      setDataProyectStore(newProyectos);
+    },
+    onError: (error: any) => {
+      console.error("Error al eliminar el proyecto:", error);
+    }
+  });
+  const handleDeleteProject = () => {
+    if (dataProyectStore.length === 1) {
+      return;
+    }
+    mutate(proyecto.id);
+  }
+
   return (
     <div className={`relative border rounded-2xl border-gray-800 flex flex-col p-2 ${showElement ? "" : "hidden"}`}>
-      <h3 className="text-md text-center font-bold p-1">Proyecto {proyecto.id + 1}</h3>
+      <h3 className="text-md text-center font-bold p-1">Proyecto {proyecto.id}</h3>
       <input 
         onChange={(e) => {
           const newProyectos = [...dataProyectStore];
@@ -97,11 +116,11 @@ export default function Proyect({
         }
         <button 
           className="cursor-pointer flex justify-center items-center"
-          onClick={() => {
-            const newProyectos = [...dataProyectStore];
-            newProyectos[index].tecnologias = [...newProyectos[index].tecnologias, {id: uuidv4(), nombre: ""}];
-            setDataProyectStore(newProyectos);
-          }}
+          // onClick={() => {
+          //   const newProyectos = [...dataProyectStore];
+          //   newProyectos[index].tecnologias = [...newProyectos[index].tecnologias, {id: uuidv4(), nombre: ""}];
+          //   setDataProyectStore(newProyectos);
+          // }}
         >
           <IoIosAddCircleOutline className="size-8" />
         </button>
@@ -119,15 +138,7 @@ export default function Proyect({
         </button>
         <button id="delete-project"
           className="absolute top-2 right-2 cursor-pointer flex justify-center items-center"
-          onClick={() => {
-            const newProyectos = [...dataProyectStore];
-            if (dataProyectStore.length === 1) {
-              setDataProyectStore(newProyectos);
-              return;
-            }
-            newProyectos.splice(index, 1);
-            setDataProyectStore(newProyectos);
-          }}
+          onClick={handleDeleteProject}
         >
           <FaDeleteLeft className="size-6" />
         </button>

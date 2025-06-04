@@ -1,7 +1,10 @@
 import { ButtonLogin } from "@/components/Buttons"
 import { InputRegister } from "@/components/Inputs";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/lib/api/usuarioAPI";
+import AlertSuccess from "@/components/Notification";
 
 export default function Register() {
 
@@ -9,19 +12,50 @@ export default function Register() {
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setPassword] = useState('')
   const [inputPasswordRepat, setInputPasswordRepat] = useState('')
+  const [isEqualPasswords, setIsEqualPasswords] = useState(false)
+  const [Alert, setAlert] = useState(false)
+  const [nameUser, setNameUser] = useState('')
 
   const [showPassword, setShowPassword] = useState(false)
 
+  const { 
+    mutate,
+    isPending, 
+    isError, 
+    error
+  } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: (data) => {
+      setNameUser(data.nombre_usuario);
+      setAlert(true);
+    }
+  })
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isEqualPasswords) {
+      mutate({ nombre_usuario: inputName, email: inputEmail, password: inputPassword });
+    }
   }
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>, setElement: (e: string) => void) => {
-    setElement(e.target.value); 
+  const handleSuccess = () => {
+    window.location.reload(); 
   }
+
+  useEffect(() => {
+    if (inputPassword && inputPasswordRepat) {
+      setIsEqualPasswords(inputPassword === inputPasswordRepat);
+    } else {
+      setIsEqualPasswords(false);
+    }
+
+  }, [inputPassword, inputPasswordRepat])
 
   return (
     <div>
+      { Alert && (
+        <AlertSuccess message={`Usuario (${nameUser}) registrado con éxito!`} onAccept={handleSuccess} />
+      )}
       <h1 className="text-2xl font-bold text-center m-4">Crea tu cuenta!</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col items-center gap-2">
@@ -42,14 +76,12 @@ export default function Register() {
             setInputElement={setPassword} 
             type={`${showPassword ? "text": "password"}`} 
             placeholder="Contraseña" 
-            onChange={(e) => handlePassword(e, setPassword )}
           />
           <InputRegister 
             inputElement={inputPasswordRepat} 
             setInputElement={setInputPasswordRepat} 
             type={`${showPassword ? "text": "password"}`} 
             placeholder="Repite la contraseña" 
-            onChange={(e) => handlePassword(e, setInputPasswordRepat )}
           />
           <button 
             type='button'
@@ -59,7 +91,11 @@ export default function Register() {
             {showPassword ? "Ocultar": "Mostrar"} contraseña 
             {showPassword ? <IoMdEye className="size-5" /> : <IoMdEyeOff className="size-5" /> }
           </button>
-          <ButtonLogin type="submit" >Registrarse</ButtonLogin>
+          {inputPasswordRepat && !isEqualPasswords && (
+            <p className="text-red-500">Las contraseñas no coinciden</p>
+          )}
+          { isError && <p className="text-red-500">{(error as Error).message}</p> }
+          <ButtonLogin type="submit" disabled={isPending} >{isPending ? 'Registrando...' : 'Registrarse'}</ButtonLogin>
         </div>
       </form>
     </div>
