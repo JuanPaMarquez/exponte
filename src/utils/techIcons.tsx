@@ -5,23 +5,23 @@ interface TechIcons {
 }
 
 export const techIcons = [
-  { id: 'uuid1', nombre: "html"},
-  { id: 'uuid2', nombre: "css"},
-  { id: 'uuid3', nombre: "javascript"},
-  { id: 'uuid4', nombre: "typescript"},
-  { id: 'uuid5', nombre: "python"},
-  { id: 'uuid6', nombre: "nextjs"},
-  { id: 'uuid7', nombre: "reactjs"},
-  { id: 'uuid8', nombre: "tailwindcss"},
-  { id: 'uuid9', nombre: "nodejs"},
-  { id: 'uuid10', nombre: "mysql"},
-  { id: 'uuid11', nombre: "sqlite"},
-  { id: 'uuid12', nombre: "springboot"},
-  { id: 'uuid13', nombre: "fastapi"},
-  { id: 'uuid14', nombre: "electron"},
-  { id: 'uuid15', nombre: "pyqt"},
-  { id: 'uuid16', nombre: "secure"},
-  { id: 'uuid17', nombre: "apiqueries"}
+  { id: 'uuid1', nombre_tecnologia: "html"},
+  { id: 'uuid2', nombre_tecnologia: "css"},
+  { id: 'uuid3', nombre_tecnologia: "javascript"},
+  { id: 'uuid4', nombre_tecnologia: "typescript"},
+  { id: 'uuid5', nombre_tecnologia: "python"},
+  { id: 'uuid6', nombre_tecnologia: "nextjs"},
+  { id: 'uuid7', nombre_tecnologia: "reactjs"},
+  { id: 'uuid8', nombre_tecnologia: "tailwindcss"},
+  { id: 'uuid9', nombre_tecnologia: "nodejs"},
+  { id: 'uuid10', nombre_tecnologia: "mysql"},
+  { id: 'uuid11', nombre_tecnologia: "sqlite"},
+  { id: 'uuid12', nombre_tecnologia: "springboot"},
+  { id: 'uuid13', nombre_tecnologia: "fastapi"},
+  { id: 'uuid14', nombre_tecnologia: "electron"},
+  { id: 'uuid15', nombre_tecnologia: "pyqt"},
+  { id: 'uuid16', nombre_tecnologia: "secure"},
+  { id: 'uuid17', nombre_tecnologia: "apiqueries"}
 ];
 
 const SIZE = "size-12";

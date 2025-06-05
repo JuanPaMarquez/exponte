@@ -6,7 +6,7 @@ export interface DataPresentacion {
 }
 export interface Tecnologia {
   id: number;
-  nombre: string;
+  nombre_tecnologia: string;
 }
 
 export interface DataProyect {

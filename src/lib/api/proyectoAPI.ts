@@ -32,6 +32,18 @@ export const setProyectoEmpty = async (user_id: number) => {
   return res.json();
 }
 
+export const updateProyecto = async (proyecto: DataProyect) => {
+  const res = await fetch(`${API}/proyecto/${proyecto.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify([proyecto]),
+  });
+  if (!res.ok) throw new Error('Error al actualizar el proyecto');
+  return res.json();
+}
+
 export const deleteProyecto = async (proyectoId: number) => {
   const res = await fetch(`${API}/proyecto/${proyectoId}`, {
     method: 'DELETE',

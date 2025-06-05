@@ -115,13 +115,14 @@ export function Proyectos() {
 
   useEffect(() => {
     if (data) setDataProyectStore(data);
+    console.log("proyectos entrantes: ",data)
+
   }, [data]);
 
   const { isPending, mutate } = useMutation({
     mutationFn: setProyectoEmpty,
     onSuccess: (data) => {
       console.log("Actualizado con éxito")
-      console.log("Nuevo proyecto:", data);
       const newDataProyecto = [
         ...dataProyectStore, 
         {

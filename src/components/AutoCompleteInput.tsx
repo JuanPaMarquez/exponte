@@ -3,13 +3,13 @@ import { useDataProyectStore } from '@/lib/store/DataStore';
 import { useState } from 'react';
 
 const AutoCompleteInput = ({ data, tecnologia, indexProyecto, index }: { 
-  data: { id: string; nombre: string }[], 
-  tecnologia: string, 
+  data: { id: string; nombre_tecnologia: string }[], 
+  tecnologia: { id: number; nombre_tecnologia: string }, 
   indexProyecto: number, 
   index: number 
 }) => {
-  const [inputValue, setInputValue] = useState(tecnologia);
-  const [suggestions, setSuggestions] = useState<{ id: string; nombre: string }[]>([]);
+  const [inputValue, setInputValue] = useState(tecnologia.nombre_tecnologia);
+  const [suggestions, setSuggestions] = useState<{ id: string; nombre_tecnologia: string }[]>([]);
   const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +18,7 @@ const AutoCompleteInput = ({ data, tecnologia, indexProyecto, index }: {
 
     // Actualizar el valor en el estado global
     const newData = [...dataProyectStore];
-    newData[indexProyecto].tecnologias[index].nombre = value;
+    newData[indexProyecto].tecnologias[index].nombre_tecnologia = value;
     setDataProyectStore(newData);
 
     // Filtrar sugerencias
@@ -26,18 +26,21 @@ const AutoCompleteInput = ({ data, tecnologia, indexProyecto, index }: {
       setSuggestions([]);
     } else {
       const filtered = data.filter((item) =>
-        item.nombre.toLowerCase().startsWith(value.toLowerCase())
+        item.nombre_tecnologia.toLowerCase().startsWith(value.toLowerCase())
       );
       setSuggestions(filtered);
     }
   };
 
-  const handleSuggestionClick = (suggestion: { id: string; nombre: string }) => {
-    setInputValue(suggestion.nombre);
+  const handleSuggestionClick = (suggestion: { nombre_tecnologia: string }) => {
+    setInputValue(suggestion.nombre_tecnologia);
     setSuggestions([]);
 
     const newData = [...dataProyectStore];
-    newData[indexProyecto].tecnologias[index] = suggestion; // Aquí actualizas toda la tecnología
+    newData[indexProyecto].tecnologias[index] = {
+      ...newData[indexProyecto].tecnologias[index], // Mantiene el resto de propiedades
+      nombre_tecnologia: suggestion.nombre_tecnologia
+    }; // Aquí actualizas toda la tecnología
     setDataProyectStore(newData);
   };
 
@@ -74,7 +77,7 @@ const AutoCompleteInput = ({ data, tecnologia, indexProyecto, index }: {
               }}
               onClick={() => handleSuggestionClick(suggestion)}
             >
-              {suggestion.nombre}
+              {suggestion.nombre_tecnologia}
             </li>
           ))}
         </ul>

@@ -1,9 +1,13 @@
 import AutoCompleteInput from "@/components/AutoCompleteInput";
-import { deleteProyecto } from "@/lib/api/proyectoAPI";
+import { ButtonMainBlack } from "@/components/Buttons";
+import LoadingSpin from "@/components/Loading";
+import { deleteProyecto, updateProyecto } from "@/lib/api/proyectoAPI";
+import { addTecnologia, deleteTecnologia } from "@/lib/api/tecnologiaAPI";
 import { useDataProyectStore } from "@/lib/store/DataStore";
 import { DataProyect } from "@/schemas/schemas";
 import { techIcons } from "@/utils/techIcons";
 import { useMutation } from "@tanstack/react-query";
+import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -19,7 +23,25 @@ export default function Proyect({
 }) {
   const { dataProyectStore, setDataProyectStore } = useDataProyectStore();
 
-  const { mutate } = useMutation({
+  const { mutate: mutateUpdate, error, isPending } = useMutation({
+    mutationFn: updateProyecto,
+    onSuccess: (data) => {
+      console.log("Proyecto actualizado con éxito");
+      const newProyectos = [...dataProyectStore];
+      newProyectos[index] = data.proyectos[0];
+      setDataProyectStore(newProyectos);
+    },
+    onError: (error: any) => {
+      console.error("Error al actualizar el proyecto:", error);
+    },
+  });
+
+  const handleUpdateProject = () => {
+    console.log("proyecto", proyecto);
+    mutateUpdate(proyecto);
+  }
+
+  const { mutate: mutateDelete } = useMutation({
     mutationFn: deleteProyecto,
     onSuccess: () => {
       console.log("Proyecto eliminado con éxito");
@@ -31,16 +53,63 @@ export default function Proyect({
       console.error("Error al eliminar el proyecto:", error);
     }
   });
+
   const handleDeleteProject = () => {
     if (dataProyectStore.length === 1) {
       return;
     }
-    mutate(proyecto.id);
+    mutateDelete(proyecto.id);
   }
+
+  const { mutate: mutateAddTech, isPending: isAddingTech } = useMutation({
+    mutationFn: addTecnologia,
+    onSuccess: (data) => {
+      console.log("Tecnología añadida con éxito");
+      const newProyectos = [...dataProyectStore];
+      newProyectos[index].tecnologias.push({
+        id: data.id,
+        nombre_tecnologia: data.nombre_tecnologia
+      });
+      setDataProyectStore(newProyectos);
+    },
+    onError: (error) => {
+      console.log(error)
+    }
+  })
+
+  const handleAddTechnology = () => {
+    // console.log(proyecto.id)
+    mutateAddTech(proyecto.id);
+  }
+
+  const { mutate: mutateEliminar } = useMutation({
+    mutationFn: deleteTecnologia,
+    onSuccess: (data) => {
+      console.log("Tecnología eliminada con éxito");
+      const newProyectos = [...dataProyectStore];
+      // Eliminar la última tecnología del proyecto
+      newProyectos[index].tecnologias.pop();
+      setDataProyectStore(newProyectos);
+    },
+    onError: (error) => {
+      console.error("Error al eliminar la tecnología:", error);
+    }
+  });
+
+  const handleDeleteTechnology = () => {
+    if (proyecto.tecnologias.length === 1) {
+      return;
+    }
+    // Eliminar la última tecnología del proyecto
+    const id = proyecto.tecnologias[proyecto.tecnologias.length - 1].id;
+    mutateEliminar(id);
+  }
+
+  console.log("tecnologias", proyecto.tecnologias.length);
 
   return (
     <div className={`relative border rounded-2xl border-gray-800 flex flex-col p-2 ${showElement ? "" : "hidden"}`}>
-      <h3 className="text-md text-center font-bold p-1">Proyecto {proyecto.id}</h3>
+      <h3 className="text-md text-center font-bold p-1">Proyecto {index + 1}</h3>
       <input 
         onChange={(e) => {
           const newProyectos = [...dataProyectStore];
@@ -50,6 +119,7 @@ export default function Proyect({
         id={`imagen-${index}`}
         name="imagen"
         type="text" 
+        value={proyecto.imagen}
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link de la foto de proyecto" 
       />
@@ -62,6 +132,7 @@ export default function Proyect({
         id={`titulo-${index}`}
         name="titulo"
         type="text" 
+        value={proyecto.titulo}
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Titulo de proyecto" 
       />
@@ -74,6 +145,7 @@ export default function Proyect({
         id={`descripcion-${index}`}
         name="descripcion"
         type="text" 
+        value={proyecto.descripcion}
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Descripcion del proyecto" 
       />
@@ -86,6 +158,7 @@ export default function Proyect({
         id={`linkGithub-${index}`}
         name="linkGithub"
         type="text" 
+        value={proyecto.linkGithub}
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link del Github" 
       />
@@ -98,6 +171,7 @@ export default function Proyect({
         id={`linkDemo-${index}`}
         name="linkDemo"
         type="text"
+        value={proyecto.linkDemo}
         className={`border p-1 border-gray-400 ${showElement ? "" : "hidden"}`} 
         placeholder="Link de la Demo" 
       />
@@ -108,7 +182,7 @@ export default function Proyect({
               key={tecnologia.id}
               indexProyecto={index}
               index={indexTecnologia}
-              tecnologia={tecnologia.nombre}
+              tecnologia={tecnologia}
               data={techIcons}
             />
 
@@ -116,32 +190,37 @@ export default function Proyect({
         }
         <button 
           className="cursor-pointer flex justify-center items-center"
-          // onClick={() => {
-          //   const newProyectos = [...dataProyectStore];
-          //   newProyectos[index].tecnologias = [...newProyectos[index].tecnologias, {id: uuidv4(), nombre: ""}];
-          //   setDataProyectStore(newProyectos);
-          // }}
+          onClick={handleAddTechnology}
         >
-          <IoIosAddCircleOutline className="size-8" />
+
+          {isAddingTech ? (<LoadingSpin />) : (<IoIosAddCircleOutline className="size-8" />)}
         </button>
         <button 
-          className="cursor-pointer flex justify-center items-center"
-          onClick={() => {
-            const newProyectos = [...dataProyectStore];
-            if (newProyectos[index].tecnologias.length > 1) {
-              newProyectos[index].tecnologias = newProyectos[index].tecnologias.slice(0, -1);
-            }
-            setDataProyectStore(newProyectos);
-          }}
+          className={`cursor-pointer flex justify-center items-center ${proyecto.tecnologias.length === 1 ? "disabled:cursor-not-allowed" : ""}`}
+          disabled={proyecto.tecnologias.length === 1}
+          onClick={handleDeleteTechnology}
         >
           <MdDelete className="size-8" />
         </button>
         <button id="delete-project"
           className="absolute top-2 right-2 cursor-pointer flex justify-center items-center"
+          disabled={dataProyectStore.length === 1}
           onClick={handleDeleteProject}
         >
           <FaDeleteLeft className="size-6" />
         </button>
+      </div>
+      { error && (
+        <p className="text-red-500">Error al actualizar el proyecto: {error.message}</p>
+      )}
+      <div className="flex justify-end items-center gap-2">
+        <ButtonMainBlack 
+          black={false}
+          onClick={handleUpdateProject}
+          disabled={isPending}
+        >
+          {isPending ? "Actualizando Proyecto..." : "Actualizar Proyecto"}
+        </ButtonMainBlack>
       </div>
     </div>
   )
