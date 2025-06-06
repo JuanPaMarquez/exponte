@@ -20,4 +20,4 @@ export interface DataProyect {
 }
 
 export type RedSocial = "linkedin" | "github" | "gmail" | "instagram" | "facebook" | "youtube";
-export type RedesState = Record<RedSocial, { activo: boolean; usuario: string }>;
+export type RedesState = { id: number; social: RedSocial; activo: boolean; usuario: string }[];

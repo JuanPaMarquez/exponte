@@ -135,19 +135,19 @@ export default function PortafolioUsuarioPage() {
         <p className="text-2xl">Desarrollador apasionado con un fuerte compromiso con la adquisición de conocimientos.</p>
         <div className="flex flex-col md:flex-row justify-center items-center gap-5 flex-wrap py-10">
           {
-            Object.entries(redesStore)
-              .filter(([, red]) => red.activo)
-              .map(([key, red]) => (
+            redesStore
+              .filter(red => red.activo)
+              .map((red) => (
                 <a 
-                  key={key} 
+                  key={red.id} 
                   href={red.usuario} 
                   id="profile-link" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 text-2xl hover:bg-blue-600 p-2 rounded-2xl"
                 >
-                  {redesIcon[key as keyof typeof redesIcon]}
-                  {key.toUpperCase()}
+                  {redesIcon[red.social as keyof typeof redesIcon]}
+                  {red.social.toUpperCase()}
                 </a>
               ))
           }

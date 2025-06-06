@@ -26,7 +26,7 @@ export const useDataProyectStore = create<DataProyectStore>((set, get) => ({
     id: 0,
     titulo: "",
     descripcion: "",
-    tecnologias: [{id: 0, nombre: ""}],
+    tecnologias: [{id: 0, nombre_tecnologia: ""}],
     linkGithub: "",
     linkDemo: "",
     imagen: "",
@@ -36,14 +36,14 @@ export const useDataProyectStore = create<DataProyectStore>((set, get) => ({
 
 
 export const useRedesStore = create<RedesStore>((set) => ({
-  redesStore: {
-    linkedin: { activo: false, usuario: "" },
-    github: { activo: false, usuario: "" },
-    gmail: { activo: false, usuario: "" },
-    instagram: { activo: false, usuario: "" },
-    facebook: { activo: false, usuario: "" },
-    youtube: { activo: false, usuario: "" },
-  },
+  redesStore: [
+    { id: 0, social: "linkedin", activo: false, usuario: "" },
+    { id: 1, social: "github", activo: false, usuario: "" },
+    { id: 2, social: "gmail", activo: false, usuario: "" },
+    { id: 3, social: "instagram", activo: false, usuario: "" },
+    { id: 4, social: "facebook", activo: false, usuario: "" },
+    { id: 5, social: "youtube", activo: false, usuario: "" },
+  ],
   setRedesStore: (newRedes) => set({ redesStore: newRedes }),
 }));
 

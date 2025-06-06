@@ -8,7 +8,7 @@ import { useDataProyectStore, usePresentacionStore, useRedesStore, useUserStore 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getPresentacion, updatePresentacion } from "@/lib/api/presentacionAPI";
 import { getProyectos, setProyectoEmpty } from "@/lib/api/proyectoAPI";
-
+import { getRedesSociales, setRedesSociales } from "@/lib/api/redesAPI";
 
 export function Presentacion() {
   const [showElement, setShowElement] = useState(true);
@@ -115,8 +115,6 @@ export function Proyectos() {
 
   useEffect(() => {
     if (data) setDataProyectStore(data);
-    console.log("proyectos entrantes: ",data)
-
   }, [data]);
 
   const { isPending, mutate } = useMutation({
@@ -173,27 +171,59 @@ export function Proyectos() {
 export function Redes() {
   const [showElement, setShowElement] = useState(true);
   const { redesStore, setRedesStore } = useRedesStore();
+  const user = useUserStore(state => state.user)
+  const userId = user?.id;
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['redes', userId],
+    queryFn: () => getRedesSociales(userId!),
+    enabled: !!redesStore
+  })
+
+  useEffect(() => {
+    if (!Array.isArray(data)) return;
+    const newRedes = [];
+    for (const red of data) {
+      const newRed = {
+        id: red.id,
+        social: red.social.toLowerCase() as RedSocial,
+        activo: red.activo === "0" ? false : true,
+        usuario: red.usuario || "", 
+      }
+      newRedes.push(newRed);
+    }
+    setRedesStore(newRedes);
+  }, [data]);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
-    const id = e.target.id.split("-")[0] as RedSocial;
-    const newRedes = { ...redesStore };
-    newRedes[id] = {
-      ...newRedes[id],
-      activo: checked,
-    };
+    const id = Number(e.target.id.split("-")[0]);
+    const newRedes = redesStore.map(red =>
+      red.id === id ? { ...red, activo: checked } : red
+    );
     setRedesStore(newRedes);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const id = e.target.id.split("-")[0] as RedSocial;
-    const newRedes = { ...redesStore };
-    newRedes[id] = {
-      ...newRedes[id],
-      usuario: value,
-    };
-    setRedesStore(newRedes);
+    const id = Number(e.target.id.split("-")[0]);
+
+    const newRedes = redesStore.map(red =>
+      red.id === id ? { ...red, usuario: value } : red
+    );
+    setRedesStore(newRedes);  
+  };
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: setRedesSociales,
+    onSuccess: () => console.log("Redes actualizadas con éxito"),
+    onError: (error: any) => {
+      console.error("Error al actualizar redes:", error);
+    },
+  });
+
+  const handleSubmit = () => {
+    mutate(redesStore);
   };
 
   return (
@@ -201,29 +231,34 @@ export function Redes() {
       <h3 className="text-lg font-bold">Seccion de Redes</h3>
 
        <div className="flex flex-col gap-2">
-        {Object.entries(redesStore).map(([key, value]) => (
-          <div key={key} className={`border border-gray-500 rounded-2xl p-2 ${value.activo ? "" : "text-gray-500"}`}>
+        { redesStore.map(red => (
+          <div key={red.id} className={`border border-gray-500 rounded-2xl p-2 ${red.activo ? "" : "text-gray-500"}`}>
             <label className="flex justify-between items-center cursor-pointer">
-              <span className="capitalize font-bold">{key.toUpperCase()}</span>
+              <span className="capitalize font-bold">{red.social.toUpperCase()}</span>
               <input
                 type="checkbox"
-                id={`${key}-checkbox`}
-                checked={value.activo}
+                id={`${red.id}-checkbox`}
+                checked={red.activo}
                 onChange={handleCheckboxChange}
               />
             </label>
             <input
               type="text"
-              id={`${key}-input`}
+              id={`${red.id}-input`}
               className="w-full border p-1"
-              placeholder={`Usuario de ${key}`}
-              value={value.usuario}
+              placeholder={`Usuario de ${red.social}`}
+              value={red.usuario}
               onChange={handleInputChange}
-              disabled={!value.activo}
+              disabled={!red.activo}
             />
           </div>
         ))}
 
+      </div>
+      { isLoading && <p>Cargando redes sociales...</p>}
+      { error && <p className="text-red-500">Error al cargar las redes sociales: {error.message}</p>}
+      <div className="ml-auto mt-2 ">
+        <ButtonMainBlack black={false} onClick={handleSubmit} >{isPending ? "Guardando..." : "Guardar Cambios"}</ButtonMainBlack>
       </div>
 
       { /* boton para mostrar/ocultar elementos */}

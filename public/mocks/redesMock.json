@@ -1,8 +1,8 @@
-{
-  "linkedin": { "activo": false, "usuario": "" },
-  "github": { "activo": true, "usuario": "" },
-  "gmail": { "activo": true, "usuario": "" },
-  "instagram": { "activo": true, "usuario": "" },
-  "facebook": { "activo": false, "usuario": "" },
-  "youtube": { "activo": false, "usuario": "" }
-}
+[
+  { "id": 0, "social": "linkedin", "activo": false, "usuario": "" },
+  { "id": 1, "social": "github", "activo": true, "usuario": "" },
+  { "id": 2, "social": "gmail", "activo": true, "usuario": "" },
+  { "id": 3, "social": "instagram", "activo": true, "usuario": "" },
+  { "id": 4, "social": "facebook", "activo": false, "usuario": "" },
+  { "id": 5, "social": "youtube", "activo": false, "usuario": "" }
+]

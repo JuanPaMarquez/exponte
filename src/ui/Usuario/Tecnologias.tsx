@@ -4,15 +4,15 @@ import { tech } from "@/utils/techIcons";
 export default function Tecnologias({
   proyecto,
 }: {
-  proyecto: DataProyect | undefined;
+  proyecto: DataProyect;
 }) {
   return (
     <div id="tecnologias" className="flex flex-wrap justify-center gap-2 p-2">
       {proyecto?.tecnologias.map((tecnologia) => (
         <div key={tecnologia.id}>
           {
-            tech[tecnologia.nombre.toLowerCase()] 
-              ? ( tech[tecnologia.nombre.toLowerCase()] ) 
+            tech[tecnologia.nombre_tecnologia.toLowerCase()] 
+              ? ( tech[tecnologia.nombre_tecnologia.toLowerCase()] ) 
               : tech["secure"]
             }
         </div>

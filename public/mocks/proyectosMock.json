@@ -1,149 +1,149 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "imagen": "https://juanpamarquez.github.io/portfolio/images-projects/libro-click.webp",
     "titulo": "Links de Ayuda",
     "descripcion": "Aplicación web que permite guardar enlaces de interés y compartirlos con otras personas.",
     "tecnologias": [
       {
-        "id": "1",
-        "nombre": "React"
+        "id": 1,
+        "nombre_tecnologia": "React"
       },
       {
-        "id": "2",
-        "nombre": "Node.js"
+        "id": 2,
+        "nombre_tecnologia": "Node.js"
       },
       {
-        "id": "3",
-        "nombre": "MongoDB"
+        "id": 3,
+        "nombre_tecnologia": "MongoDB"
       },
       {
-        "id": "4",
-        "nombre": "Express"
+        "id": 4,
+        "nombre_tecnologia": "Express"
       },
       {
-        "id": "5",
-        "nombre": "Bootstrap"
+        "id": 5,
+        "nombre_tecnologia": "Bootstrap"
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",
     "linkDemo": "https://juanpamarquez.github.io/links/"
   },
   {
-    "id": "2",
+    "id": 2,
     "imagen": "https://juanpamarquez.github.io/portfolio/images-projects/libro-click.webp",
     "titulo": "Links de Ayuda",
     "descripcion": "Aplicación web que permite guardar enlaces de interés y compartirlos con otras personas.",
     "tecnologias": [
       {
-        "id": "1",
-        "nombre": "Reactjs"
+        "id": 1,
+        "nombre_tecnologia": "Reactjs"
       },
       {
-        "id": "2",
-        "nombre": "Nodejs"
+        "id": 2,
+        "nombre_tecnologia": "Nodejs"
       },
       {
-        "id": "3",
-        "nombre": "MongoDB"
+        "id": 3,
+        "nombre_tecnologia": "MongoDB"
       },
       {
-        "id": "4",
-        "nombre": "Express"
+        "id": 4,
+        "nombre_tecnologia": "Express"
       },
       {
-        "id": "5",
-        "nombre": "Bootstrap"
+        "id": 5,
+        "nombre_tecnologia": "Bootstrap"
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",
     "linkDemo": ""
   },
   {
-    "id": "3",
+    "id": 3,
     "imagen": "https://juanpamarquez.github.io/portfolio/images-projects/libro-click.webp",
     "titulo": "Links de Ayuda",
     "descripcion": "Aplicación web que permite guardar enlaces de interés y compartirlos con otras personas.",
     "tecnologias": [
       {
-        "id": "1",
-        "nombre": "Reactjs"
+        "id": 1,
+        "nombre_tecnologia": "Reactjs"
       },
       {
-        "id": "2",
-        "nombre": "Nodejs"
+        "id": 2,
+        "nombre_tecnologia": "Nodejs"
       },
       {
-        "id": "3",
-        "nombre": "MongoDB"
+        "id": 3,
+        "nombre_tecnologia": "MongoDB"
       },
       {
-        "id": "4",
-        "nombre": "Express"
+        "id": 4,
+        "nombre_tecnologia": "Express"
       },
       {
-        "id": "5",
-        "nombre": "Bootstrap"
+        "id": 5,
+        "nombre_tecnologia": "Bootstrap"
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",
     "linkDemo": "https://juanpamarquez.github.io/links/"
   },
   {
-    "id": "4",
+    "id": 4,
     "imagen": "https://juanpamarquez.github.io/portfolio/images-projects/libro-click.webp",
     "titulo": "Links de Ayuda",
     "descripcion": "Aplicación web que permite guardar enlaces de interés y compartirlos con otras personas.",
     "tecnologias": [
       {
-        "id": "1",
-        "nombre": "Reactjs"
+        "id": 1,
+        "nombre_tecnologia": "Reactjs"
       },
       {
-        "id": "2",
-        "nombre": "Node.js"
+        "id": 2,
+        "nombre_tecnologia": "Node.js"
       },
       {
-        "id": "3",
-        "nombre": "MongoDB"
+        "id": 3,
+        "nombre_tecnologia": "MongoDB"
       },
       {
-        "id": "4",
-        "nombre": "Express"
+        "id": 4,
+        "nombre_tecnologia": "Express"
       },
       {
-        "id": "5",
-        "nombre": "Bootstrap"
+        "id": 5,
+        "nombre_tecnologia": "Bootstrap"
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",
     "linkDemo": "https://juanpamarquez.github.io/links/"
   },
   {
-    "id": "5",
+    "id": 5,
     "imagen": "https://juanpamarquez.github.io/portfolio/images-projects/libro-click.webp",
     "titulo": "Links de Ayuda",
     "descripcion": "Aplicación web que permite guardar enlaces de interés y compartirlos con otras personas.",
     "tecnologias": [
       {
-        "id": "1",
-        "nombre": "Reactjs"
+        "id": 1,
+        "nombre_tecnologia": "Reactjs"
       },
       {
-        "id": "2",
-        "nombre": "Nodejs"
+        "id": 2,
+        "nombre_tecnologia": "Nodejs"
       },
       {
-        "id": "3",
-        "nombre": "MongoDB"
+        "id": 3,
+        "nombre_tecnologia": "MongoDB"
       },
       {
-        "id": "4",
-        "nombre": "Express"
+        "id": 4,
+        "nombre_tecnologia": "Express"
       },
       {
-        "id": "5",
-        "nombre": "Bootstrap"
+        "id": 5,
+        "nombre_tecnologia": "Bootstrap"
       }
     ],
     "linkGithub": "https://github.com/JuanPaMarquez/links/",

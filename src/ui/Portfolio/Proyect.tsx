@@ -105,8 +105,6 @@ export default function Proyect({
     mutateEliminar(id);
   }
 
-  console.log("tecnologias", proyecto.tecnologias.length);
-
   return (
     <div className={`relative border rounded-2xl border-gray-800 flex flex-col p-2 ${showElement ? "" : "hidden"}`}>
       <h3 className="text-md text-center font-bold p-1">Proyecto {index + 1}</h3>
