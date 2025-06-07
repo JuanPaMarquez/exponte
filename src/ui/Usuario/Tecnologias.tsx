@@ -4,7 +4,7 @@ import { tech } from "@/utils/techIcons";
 export default function Tecnologias({
   proyecto,
 }: {
-  proyecto: DataProyect;
+  proyecto: DataProyect | undefined;
 }) {
   return (
     <div id="tecnologias" className="flex flex-wrap justify-center gap-2 p-2">
