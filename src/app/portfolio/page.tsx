@@ -1,6 +1,5 @@
 "use client";
 import { useColoresStore, useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { redesIcon } from "@/utils/redIcons";
 import PageProyect from "@/ui/Usuario/PageProyect";
