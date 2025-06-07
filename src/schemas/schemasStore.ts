@@ -16,12 +16,13 @@ export interface RedesStore {
 }
 
 export interface Colores {
-  textoColor: { label: string; color: string };
-  textoTituloColor: { label: string; color: string };
-  navegacionColor: { label: string; color: string };
-  presentacionColor: { label: string; color: string };
-  proyectosColor: { label: string; color: string };
-  redesColor: { label: string; color: string };
+  id: number;
+  textoColor: string;
+  textoTituloColor: string;
+  navegacionColor: string;
+  presentacionColor: string;
+  proyectosColor: string;
+  redesColor: string;
 }
 
 export interface ColoresStore {
@@ -37,7 +38,7 @@ interface User {
 
 export interface UserStore {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   hasHydrated: boolean;
   setHasHydrated: (hasHydrated: boolean) => void;
 }

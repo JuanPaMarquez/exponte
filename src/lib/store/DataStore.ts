@@ -1,7 +1,6 @@
 "use client";
 
 import { create } from "zustand";
-import { v4 as uuidv4 } from 'uuid';
 import { 
   PresentacionStore, 
   DataProyectStore, 
@@ -49,14 +48,20 @@ export const useRedesStore = create<RedesStore>((set) => ({
 
 export const useColoresStore = create<ColoresStore>((set) => ({
   coloresStore: {
-    textoColor: { label: "Color de texto:", color: "#ffffff" },
-    textoTituloColor: { label: "Color de título:", color: "#8fdaff" },
-    navegacionColor: { label: "Fondo de navegación:", color: "#287dbe" },
-    presentacionColor: { label: "Fondo de presentación:", color: "#0d2a3f" },
-    proyectosColor: { label: "Fondo de proyectos:", color: "#21689e" },
-    redesColor: { label: "Fondo de redes:", color: "#0d2a3f" },
+    id: 0,
+    textoColor: "#ffffff",
+    textoTituloColor: "#8fdaff",
+    navegacionColor: "#287dbe",
+    presentacionColor: "#0d2a3f",
+    proyectosColor: "#21689e",
+    redesColor: "#0d2a3f",
   },
-  setColoresStore: (newColores) => set({ coloresStore: newColores }),
+  setColoresStore: (newPartialColores) => set((state) => ({
+    coloresStore: {
+      ...state.coloresStore,
+      ...newPartialColores,
+    }
+  }))
 }));
 
 export const useUserStore = create<UserStore>()(

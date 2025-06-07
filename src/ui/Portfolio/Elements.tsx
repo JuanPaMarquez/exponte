@@ -20,7 +20,8 @@ export function Presentacion() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['presentacion', userId],
     queryFn: () => getPresentacion(userId!),
-    enabled: !!userId
+    enabled: !!userId,
+    refetchOnWindowFocus: false
   });
 
   
@@ -110,7 +111,8 @@ export function Proyectos() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['proyectos', userId],
     queryFn: () => getProyectos(userId!),
-    enabled: !!userId
+    enabled: !!userId,
+    refetchOnWindowFocus: false
   });
 
   useEffect(() => {
@@ -177,7 +179,8 @@ export function Redes() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['redes', userId],
     queryFn: () => getRedesSociales(userId!),
-    enabled: !!redesStore
+    enabled: !!redesStore,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {
