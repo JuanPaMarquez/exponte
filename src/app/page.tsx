@@ -25,7 +25,7 @@ autonomía del estudiante y permiten una evaluación auténtica basada en eviden
 aprendizaje. En el ámbito de las carreras tecnológicas, donde los proyectos prácticos 
 constituyen una parte esencial del proceso formativo, contar con un medio de presentación 
 profesional se vuelve indispensable para resaltar el nivel de innovación y aplicabilidad de los 
-desarrollos realizados por los estudiantes. 
+desarrollos realizados por los estudiantes de la Universidad de Pamplona. 
         </p>
       </div>
       
