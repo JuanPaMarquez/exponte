@@ -12,12 +12,12 @@ import { getColores } from "@/lib/api/coloresAPI";
 import { getProyectos } from "@/lib/api/proyectoAPI";
 import { getRedesSociales } from "@/lib/api/redesAPI";
 import { UserLoadError, UserLoading, UserNotFound } from "@/ui/Fallback/FallbackPage";
-import { useRouter } from 'next/router';
+import { useSearchParams } from "next/navigation";
 
 export default function PortafolioUsuarioPage() {
-  const router = useRouter();
-  const { usuario } = router.query;
-
+  const searchParams = useSearchParams();
+  const usuario = searchParams.get("usuario");
+  
   const { coloresStore, setColoresStore } = useColoresStore();
   const { dataPresentacionStore, setDataPresentacionStore } = usePresentacionStore();
   const { dataProyectStore, setDataProyectStore } = useDataProyectStore();

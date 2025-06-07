@@ -1,12 +1,5 @@
-import dynamic from 'next/dynamic';
-import { UserLoading } from "@/ui/Fallback/FallbackPage";
+import PortafolioUsuarioPage from '@/ui/Portfolio/PortafolioUsuarioPage';
 
-const ClientOnlyPortfolio = dynamic(
-  () => import('./PortafolioUsuarioPageClient'),
-  { 
-    ssr: false,
-    loading: () => <UserLoading />
-  }
-);
-
-export default ClientOnlyPortfolio;
+export default function PortfolioPage() {
+  return <PortafolioUsuarioPage />;
+}
