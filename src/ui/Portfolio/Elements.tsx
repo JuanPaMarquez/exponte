@@ -32,7 +32,7 @@ export function Presentacion() {
   const { isPending, mutate } = useMutation({
     mutationFn: updatePresentacion,
     onSuccess: () => console.log("Actualizado con éxito"),
-    onError: (error: any) => {
+    onError: (error) => {
       setMutationError(error.message || "Error desconocido al actualizar");
     },
   });
@@ -132,7 +132,7 @@ export function Proyectos() {
 
       setDataProyectStore(newDataProyecto)
     },
-    onError: (error: any) => {
+    onError: (error) => {
       setMutationError(error.message || "Error desconocido al actualizar");
     },
   });
@@ -220,7 +220,7 @@ export function Redes() {
   const { isPending, mutate } = useMutation({
     mutationFn: setRedesSociales,
     onSuccess: () => console.log("Redes actualizadas con éxito"),
-    onError: (error: any) => {
+    onError: (error) => {
       console.error("Error al actualizar redes:", error);
     },
   });

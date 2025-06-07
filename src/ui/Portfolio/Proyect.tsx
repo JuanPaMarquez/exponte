@@ -7,7 +7,6 @@ import { useDataProyectStore } from "@/lib/store/DataStore";
 import { DataProyect } from "@/schemas/schemas";
 import { techIcons } from "@/utils/techIcons";
 import { useMutation } from "@tanstack/react-query";
-import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -30,10 +29,7 @@ export default function Proyect({
       const newProyectos = [...dataProyectStore];
       newProyectos[index] = data.proyectos[0];
       setDataProyectStore(newProyectos);
-    },
-    onError: (error: any) => {
-      console.error("Error al actualizar el proyecto:", error);
-    },
+    }
   });
 
   const handleUpdateProject = () => {
@@ -48,9 +44,6 @@ export default function Proyect({
       const newProyectos = [...dataProyectStore];
       newProyectos.splice(index, 1);
       setDataProyectStore(newProyectos);
-    },
-    onError: (error: any) => {
-      console.error("Error al eliminar el proyecto:", error);
     }
   });
 
@@ -84,15 +77,10 @@ export default function Proyect({
 
   const { mutate: mutateEliminar } = useMutation({
     mutationFn: deleteTecnologia,
-    onSuccess: (data) => {
-      console.log("Tecnología eliminada con éxito");
+    onSuccess: () => {
       const newProyectos = [...dataProyectStore];
-      // Eliminar la última tecnología del proyecto
       newProyectos[index].tecnologias.pop();
       setDataProyectStore(newProyectos);
-    },
-    onError: (error) => {
-      console.error("Error al eliminar la tecnología:", error);
     }
   });
 

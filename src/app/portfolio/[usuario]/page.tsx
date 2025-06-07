@@ -1,5 +1,4 @@
 "use client";
-import { getDataPresentacion, getDataProyects, getDataRedes } from "@/lib/dataActions";
 import { useColoresStore, useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";

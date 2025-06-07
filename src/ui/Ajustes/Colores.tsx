@@ -45,7 +45,7 @@ export default function Colores() {
 
   const { isPending, mutate } = useMutation({
     mutationFn: updateColores,
-    onError: (error: any) => {
+    onError: (error) => {
       setErrorUpdate(error.message || "Error desconocido al actualizar colores");
     },
   });

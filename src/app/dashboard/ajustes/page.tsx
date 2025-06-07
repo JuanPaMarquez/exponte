@@ -1,6 +1,4 @@
 "use client"
-import { ButtonMainBlack } from "@/components/Buttons"
-import { useColoresStore } from "@/lib/store/DataStore"
 import Colores from "@/ui/Ajustes/Colores"
 import Usuario from "@/ui/Ajustes/Usuario"
 

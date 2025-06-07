@@ -20,7 +20,7 @@ export const usePresentacionStore = create<PresentacionStore>((set) => ({
   setDataPresentacionStore: (newData) => set({ dataPresentacionStore: newData }),
 }));
 
-export const useDataProyectStore = create<DataProyectStore>((set, get) => ({
+export const useDataProyectStore = create<DataProyectStore>((set) => ({
   dataProyectStore: [{
     id: 0,
     titulo: "",

@@ -1,5 +1,4 @@
 "use client";
-import { useUserStore } from "@/lib/store/DataStore"
 import { redirect } from "next/navigation"
 
 export default function DashboardPage() {
