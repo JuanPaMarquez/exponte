@@ -1,3 +1,4 @@
+"use client";
 import { ButtonMainBlack } from "@/components/Buttons";
 import AlertSuccess from "@/components/Notification";
 import { getUsuario, updateUserName, updateUserPassword } from "@/lib/api/usuarioAPI";

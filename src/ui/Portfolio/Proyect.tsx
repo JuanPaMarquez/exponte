@@ -1,3 +1,5 @@
+
+"use client";
 import AutoCompleteInput from "@/components/AutoCompleteInput";
 import { ButtonMainBlack } from "@/components/Buttons";
 import LoadingSpin from "@/components/Loading";

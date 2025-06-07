@@ -1,3 +1,4 @@
+"use client";
 import { ButtonLogin } from "@/components/Buttons"
 import { InputRegister } from "@/components/Inputs";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
