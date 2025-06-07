@@ -21,7 +21,7 @@ export default function PortfolioPage() {
   }
 
   const handleDeploy = () => {
-    redirect(`/portfolio/${user?.nombre_usuario}`);
+    redirect(`/portfolio?usuario=${user?.nombre_usuario}`);
   }
 
   return (
