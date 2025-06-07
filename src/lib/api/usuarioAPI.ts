@@ -72,3 +72,12 @@ export async function updateUserPassword({ userId, password }: { userId: number;
   }
   return res.json();
 }
+
+export async function getUsuarioId (userName: string) {
+  const res = await fetch(`${API}/usuario/nombre/${userName}`);
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.error || 'Error al obtener el ID del usuario');
+  }
+  return res.json();
+}

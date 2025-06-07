@@ -3,12 +3,13 @@
 import { ButtonMainBlack } from "@/components/Buttons";
 import { Presentacion, Proyectos, Redes } from "@/ui/Portfolio/Elements";
 import { useState } from "react";
-import { useDataProyectStore, usePresentacionStore, useRedesStore } from "@/lib/store/DataStore";
+import { useDataProyectStore, usePresentacionStore, useRedesStore, useUserStore } from "@/lib/store/DataStore";
 import { redirect } from "next/navigation"
 
 export default function PortfolioPage() {
   const { dataProyectStore } = useDataProyectStore();
   const { dataPresentacionStore } = usePresentacionStore();
+  const user = useUserStore(state => state.user);
   const { redesStore } = useRedesStore();
 
   const [hasProject, setHasProject] = useState(false);
@@ -20,7 +21,7 @@ export default function PortfolioPage() {
   }
 
   const handleDeploy = () => {
-    redirect("/portfolio/default");
+    redirect(`/portfolio/${user?.nombre_usuario}`);
   }
 
   return (
