@@ -19,5 +19,16 @@ export interface DataProyect {
   linkDemo: string;
 }
 
+export interface Colores {
+  id: number;
+  textoColor: string;
+  textoTituloColor: string;
+  navegacionColor: string;
+  presentacionColor: string;
+  proyectosColor: string;
+  redesColor: string;
+}
+
+
 export type RedSocial = "linkedin" | "github" | "gmail" | "instagram" | "facebook" | "youtube";
 export type RedesState = { id: number; social: RedSocial; activo: boolean; usuario: string }[];

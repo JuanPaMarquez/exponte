@@ -1,4 +1,4 @@
-import { DataPresentacion, DataProyect, RedesState } from "./schemas";
+import { Colores, DataPresentacion, DataProyect, RedesState } from "./schemas";
 
 export interface PresentacionStore {
   dataPresentacionStore: DataPresentacion;
@@ -13,16 +13,6 @@ export interface DataProyectStore {
 export interface RedesStore {
   redesStore: RedesState;
   setRedesStore: (newRedes: RedesState) => void;
-}
-
-export interface Colores {
-  id: number;
-  textoColor: string;
-  textoTituloColor: string;
-  navegacionColor: string;
-  presentacionColor: string;
-  proyectosColor: string;
-  redesColor: string;
 }
 
 export interface ColoresStore {
