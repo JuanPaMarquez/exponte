@@ -23,6 +23,6 @@ export const precios = [
         "Soporte completo para elementos interactivos e inmersivos",
         "Soporte técnico",
       ],
-    precio: "$6.99 USD/mes"
+    precio: "No disponible aún"	
   }
 ]

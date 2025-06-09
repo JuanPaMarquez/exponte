@@ -84,7 +84,6 @@ export default function InicioSesion (){
            {isPending ? 'Ingresando...' : 'Ingresar'}
         </ButtonLogin>
       </form>
-      <button onClick={() => console.log("cerrar sesion: ", user )}>mostrar</button>
       { Alert && (
         <AlertSuccess message={`Inicio de Sesion Exitoso!`} onAccept={handleSuccess} />
       )}

@@ -146,7 +146,7 @@ export default function PortafolioUsuarioPage() {
         <img className="rounded-[40%] size-70 my-4" src={dataPresentacionStore.foto || "/fallback-image.webp"} alt="" />
         <h1 
           style={{ color: coloresStore.textoTituloColor }} 
-          className="text-5xl font-bold text-center">Hola, soy {dataPresentacionStore.nombre}</h1>
+          className="text-5xl font-bold text-center">{dataPresentacionStore.nombre}</h1>
         <p style={{ color: coloresStore.textoColor }} className="text-3xl">{dataPresentacionStore.titulos}</p>
       </section>
       <section
