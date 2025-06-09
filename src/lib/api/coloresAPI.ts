@@ -1,4 +1,4 @@
-import { Colores } from "@/schemas/schemasStore";
+import { Colores } from "@/schemas/schemas";
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 
