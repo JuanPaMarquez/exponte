@@ -9,7 +9,7 @@ export default function LinksNav() {
       <ButtonNav>Inicio</ButtonNav>        
       <ButtonNav href="/precios">Precios</ButtonNav>
       {user ? (
-        <ButtonMain href="/dashboard/portfolio">{user.nombre_usuario}</ButtonMain>
+        <ButtonMain href="/dashboard/portfolio">{user.nombre_usuario.toUpperCase()}</ButtonMain>
       ) : (
         <ButtonMain href="/login">Entrar</ButtonMain>
       )}
