@@ -17,10 +17,8 @@ export default function InicioSesion (){
   const [inputUser, setInputUser] = useState('')
   const [inputLock, setInputLock] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
   const [Alert, setAlert] = useState(false)
-  // const { user, setUser } = useUserStore()
 
   const { 
     mutate, 
