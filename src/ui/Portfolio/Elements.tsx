@@ -29,7 +29,7 @@ export function Presentacion() {
     if (data) setDataPresentacionStore(data);
   }, [data]);
   
-  const { isPending, mutate } = useMutation({
+  const { isPending, mutate  } = useMutation({
     mutationFn: updatePresentacion,
     onSuccess: () => console.log("Actualizado con éxito"),
     onError: (error) => {

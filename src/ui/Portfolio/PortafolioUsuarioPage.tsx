@@ -213,7 +213,9 @@ export default function PortafolioUsuarioPage() {
           )}
         </div>
       </section>
-      <section id="contacts" className="bg-[#0d2a3f] text-white flex flex-col items-center text-center py-10">
+      <section 
+        style={{ backgroundColor: coloresStore.redesColor }}
+        id="contacts" className="text-white flex flex-col items-center text-center py-10">
         <div className="contenido">
           <h1 className="text-4xl font-bold p-5">CONTACTAME:</h1>
           <p className="text-2xl">Desarrollador apasionado con un fuerte compromiso con la adquisición de conocimientos.</p>
