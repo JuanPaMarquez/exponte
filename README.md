@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 Aplicación web para la creación de portafolios con experiencias inmersivas utilizando la metodología SCRUM para mejorar la presentación de los proyectos hechos por los estudiantes de ingeniería de sistemas
 
-## Getting Started
+---
 
-First, run the development server:
+## Documento completo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Puedes consultar el documento técnico en PDF aquí:  
+📥 [Descargar informe final](./docs/InformeFinal%20-%20Juan%20Marquez.pdf)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Características principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Crear usuarios e inicio de sesion
+- Generador de portafolio por usuario
+- Tecnología usada: Next.js / Node.JS / SQLite.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación y uso
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/usuario/proyecto.git
+   cd proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Instalar dependencia:
+   ```bash
+   npm install
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Ejecuta en modo desarrollo:
+   ```bash
+   npm run dev
