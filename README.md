@@ -26,7 +26,7 @@ Puedes consultar el documento técnico en PDF aquí:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/usuario/proyecto.git
+   git clone https://github.com/JuanPaMarquez/exponte.git
    cd proyecto
 
 2. Instalar dependencia:
