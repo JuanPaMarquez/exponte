@@ -11,6 +11,7 @@
 
 Puedes consultar el documento técnico en PDF aquí:  
 📥 [Descargar informe final](./docs/InformeFinal%20-%20Juan%20Marquez.pdf)
+📥 [Descargar manual de usuario](./docs/Manual%20de%20usuario%20EXPONTE%20-%20Juan%20Marquez.pdf)
 
 ---
 
