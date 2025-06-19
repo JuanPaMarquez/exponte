@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15694094.svg)](https://doi.org/10.5281/zenodo.15694094)
+
 # 📘 Aplicación web para la creación de portafolios con experiencias inmersivas utilizando la metodología SCRUM para mejorar la presentación de los proyectos hechos por los estudiantes de ingeniería de sistemas
 
 ---
